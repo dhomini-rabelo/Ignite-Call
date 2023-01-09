@@ -11,10 +11,15 @@ export const globalStyles = globalCss({
   'html, body': {
     minWidth: '100%',
     minHeight: '100%',
-    backgroundColor: '$gray-900',
-    color: '$gray-100',
+    backgroundColor: '$gray900',
+    color: '$gray100',
     '-webkit-font-smoothing': 'antialised',
   },
+
+  // '#__next': {
+  //   maxWidth: '1264px',
+  //   margin: '0 auto',
+  // },
 
   'body, input, textarea, button': {
     fontFamily: 'Roboto',

@@ -1,3 +1,29 @@
+import { Heading, Text } from '@ignite-ui/react'
+import Image from 'next/image'
+import { Div } from './styles'
+
 export function Home() {
-  return <h1 className="text-3xl font-bold underline">Hello world!</h1>
+  return (
+    <Div.container className="flex items-center gap-20 ml-auto">
+      <div className="max-w-[480px] px-10">
+        <Heading as="h1" size="4xl" className="font-bold">
+          Agendamento descomplicado
+        </Heading>
+        <Text size="xl" className="mt-2 color-Gray-200">
+          Conecte seu calendário e permita que as pessoas marquem agendamentos
+          no seu tempo livre.
+        </Text>
+      </div>
+      <div className="overflow-hidden pr-8">
+        <Image
+          src="/preview.svg"
+          alt="Calendário simulando de maneira simples o funcionamento da aplicação"
+          height={442}
+          width={827}
+          quality={100}
+          priority
+        />
+      </div>
+    </Div.container>
+  )
 }
