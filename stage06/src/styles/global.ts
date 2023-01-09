@@ -1,4 +1,4 @@
-import { globalCss } from "@ignite-ui/react";
+import { globalCss } from '@ignite-ui/react'
 
 export const globalStyles = globalCss({
   '*': {
@@ -18,12 +18,12 @@ export const globalStyles = globalCss({
 
   'body, input, textarea, button': {
     fontFamily: 'Roboto',
-    fontWeight: 400
+    fontWeight: 400,
   },
 
   '.etc': {
     whiteSpace: 'nowrap',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
-  }
+  },
 })
