@@ -10,7 +10,7 @@ export function Home() {
         <Heading as="h1" size="4xl" className="font-bold">
           Agendamento descomplicado
         </Heading>
-        <Text size="xl" className="mt-2 color-Gray-200">
+        <Text size="xl" className="mt-2 text-Gray-200">
           Conecte seu calendário e permita que as pessoas marquem agendamentos
           no seu tempo livre.
         </Text>
