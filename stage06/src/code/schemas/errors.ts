@@ -1,7 +1,7 @@
 /* eslint-disable */
 
 export enum ErrorMessages {
-  REQUIRED = 'Este campo é obrigatório',
+  REQUIRED = 'Preencha este campo',
   INVALID_VALUE = 'Valor inválido',
   INVALID_EMAIL = 'Email inválido',
 }
@@ -10,9 +10,9 @@ export enum ErrorMessages {
 
 export const DynamicErrorMessage = {
   minLength: (minLengthValue: number) =>
-    `Este campo deve ter no mínimo ${minLengthValue} dígitos`,
+    `Use mais que ${minLengthValue} letras`,
   maxLength: (maxLengthValue: number) =>
-    `Este campo deve ter no máximo ${maxLengthValue} dígitos`,
+    `Use menos que ${maxLengthValue} letras`,
   minValue: (minValueNumber: number) =>
     `Este campo deve ser no mínimo ${minValueNumber}`,
   maxValue: (maxValueNumber: number) =>
