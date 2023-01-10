@@ -6,18 +6,20 @@ import {
   claimUsernameSchema,
   IClaimUsernameSchema,
 } from '../../../../code/schemas/validations/user'
+import { useRouter } from 'next/router'
 
 export function UsernameForm() {
+  const router = useRouter()
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<IClaimUsernameSchema>({
     resolver: zodResolver(claimUsernameSchema),
   })
 
-  function onValidSubmit(data: IClaimUsernameSchema) {
-    console.log(data)
+  async function onValidSubmit(data: IClaimUsernameSchema) {
+    await router.push(`/register?username=${data.username}`)
   }
 
   return (
@@ -34,7 +36,7 @@ export function UsernameForm() {
           className="grow"
           {...register('username')}
         />
-        <Button size="sm" type="submit">
+        <Button size="sm" type="submit" disabled={isSubmitting}>
           Reservar
           <ArrowRight size={20} />
         </Button>

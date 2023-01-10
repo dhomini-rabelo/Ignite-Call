@@ -14,15 +14,23 @@ import {
   registerSchema,
 } from '../../code/schemas/validations/user'
 import { Form } from '../../styles/form'
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 
 export default function Register() {
+  const router = useRouter()
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<IRegisterSchema>({
     resolver: zodResolver(registerSchema),
   })
+
+  useEffect(() => {
+    setValue('username', String(router.query.username || ''))
+  }, [router.query.username, setValue])
 
   function onValidSubmit(data: IRegisterSchema) {
     console.log(data)
