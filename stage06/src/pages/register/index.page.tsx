@@ -16,14 +16,17 @@ import {
 import { Form } from '../../styles/form'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
-import { client } from '../../code/core/settings'
+import { client } from '../../code/settings/frontend'
+import { AxiosError } from 'axios'
 
 export default function Register() {
   const router = useRouter()
   const {
     register,
+    reset,
     handleSubmit,
     setValue,
+    setError,
     formState: { errors },
   } = useForm<IRegisterSchema>({
     resolver: zodResolver(registerSchema),
@@ -40,7 +43,15 @@ export default function Register() {
         name: data.name,
       })
     } catch (error) {
-      console.log(error)
+      if (
+        error instanceof AxiosError &&
+        error.response?.data?.errors?.username
+      ) {
+        reset(data)
+        setError('username', error.response?.data?.errors?.username)
+      } else {
+        console.log(error)
+      }
     }
   }
   return (

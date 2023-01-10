@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import { prisma } from '../../../code/core/settings'
+import { prisma } from '../../../code/settings/backend'
 
 export default async function handler(
   req: NextApiRequest,
@@ -10,6 +10,20 @@ export default async function handler(
   }
 
   const { name, username }: { name: string; username: string } = req.body
+
+  const usernameExists = await prisma.user.findUnique({
+    where: {
+      username,
+    },
+  })
+
+  if (usernameExists) {
+    return res.status(400).json({
+      errors: {
+        username: 'Username já cadastrado',
+      },
+    })
+  }
 
   const user = await prisma.user.create({
     data: {
