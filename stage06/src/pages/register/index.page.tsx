@@ -27,7 +27,7 @@ export default function Register() {
     handleSubmit,
     setValue,
     setError,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<IRegisterSchema>({
     resolver: zodResolver(registerSchema),
   })
@@ -42,6 +42,7 @@ export default function Register() {
         username: data.username,
         name: data.name,
       })
+      await router.push('/register/connect-calendar')
     } catch (error) {
       if (
         error instanceof AxiosError &&
@@ -89,7 +90,7 @@ export default function Register() {
             {errors.name ? errors.name.message : <>&nbsp;</>}
           </Form.error>
         </label>
-        <Button type="submit">
+        <Button type="submit" disabled={isSubmitting}>
           Próximo passo
           <ArrowRight />
         </Button>
