@@ -12,10 +12,7 @@ export const claimUsernameSchema = zod.object({
 export type IClaimUsernameSchema = zod.infer<typeof claimUsernameSchema>
 
 export const registerSchema = claimUsernameSchema.extend({
-  name: zod
-    .string()
-    .min(1, ErrorMessages.REQUIRED)
-    .transform((v) => v.toLocaleLowerCase()),
+  name: zod.string().min(1, ErrorMessages.REQUIRED),
 })
 
 export type IRegisterSchema = zod.infer<typeof registerSchema>
