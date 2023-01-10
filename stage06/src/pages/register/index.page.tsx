@@ -16,6 +16,7 @@ import {
 import { Form } from '../../styles/form'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
+import { client } from '../../code/core/settings'
 
 export default function Register() {
   const router = useRouter()
@@ -32,8 +33,15 @@ export default function Register() {
     setValue('username', String(router.query.username || ''))
   }, [router.query.username, setValue])
 
-  function onValidSubmit(data: IRegisterSchema) {
-    console.log(data)
+  async function onValidSubmit(data: IRegisterSchema) {
+    try {
+      await client.post('/users', {
+        username: data.username,
+        name: data.name,
+      })
+    } catch (error) {
+      console.log(error)
+    }
   }
   return (
     <main className="max-w-[572px] mt-20 mx-auto mb-4 px-4">
