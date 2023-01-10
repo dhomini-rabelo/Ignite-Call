@@ -1,5 +1,4 @@
 import { Box, Button, Heading, MultiStep, Text } from '@ignite-ui/react'
-import { useRouter } from 'next/router'
 import { ArrowRight } from 'phosphor-react'
 
 export default function Register() {
