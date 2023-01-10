@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import {
   claimUsernameSchema,
   IClaimUsernameSchema,
-} from '../../../../code/schemas/user'
+} from '../../../../code/schemas/validations/user'
 
 export function UsernameForm() {
   const {
