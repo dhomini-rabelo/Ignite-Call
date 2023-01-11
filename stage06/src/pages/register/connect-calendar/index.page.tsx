@@ -1,8 +1,16 @@
 import { Box, Button, Heading, MultiStep, Text } from '@ignite-ui/react'
+import { signIn, useSession } from 'next-auth/react'
+import { useRouter } from 'next/router'
 import { ArrowRight } from 'phosphor-react'
+import { Form } from '../../../styles/form'
 
 export default function Register() {
-  // const router = useRouter()
+  const router = useRouter()
+  const session = useSession()
+
+  const permissionsWasRejected = !!router.query.error
+
+  console.log(session)
 
   // async function onValidSubmit(data) { }
 
@@ -21,11 +29,20 @@ export default function Register() {
       <Box className="mt-6 flex flex-col gap-4 px-0">
         <div className="flex items-center justify-between border border-Gray-600 px-4 px6 rounded-lg">
           <Text>Google Calendar</Text>
-          <Button variant="secondary" size="sm">
+          <Button
+            variant="secondary"
+            size="sm"
+            onClick={() => signIn('google')}
+          >
             Conectar
             <ArrowRight />
           </Button>
         </div>
+        {permissionsWasRejected && (
+          <Form.error>
+            Habilite as permissões ao Google Calendar para continuar
+          </Form.error>
+        )}
         <Button type="submit">
           Próximo passo
           <ArrowRight />
