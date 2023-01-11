@@ -1,7 +1,7 @@
 import { Box, Button, Heading, MultiStep, Text } from '@ignite-ui/react'
 import { signIn, useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
-import { ArrowRight } from 'phosphor-react'
+import { ArrowRight, Check } from 'phosphor-react'
 import { Form } from '../../../styles/form'
 
 export default function Register() {
@@ -9,10 +9,14 @@ export default function Register() {
   const session = useSession()
 
   const permissionsWasRejected = !!router.query.error
+  const isAuthenticated =
+    session.status === 'authenticated' && !permissionsWasRejected
 
   console.log(session)
 
-  // async function onValidSubmit(data) { }
+  function handleLogin() {
+    signIn('google')
+  }
 
   return (
     <main className="max-w-[572px] mt-20 mx-auto mb-4 px-4">
@@ -29,21 +33,24 @@ export default function Register() {
       <Box className="mt-6 flex flex-col gap-4 px-0">
         <div className="flex items-center justify-between border border-Gray-600 px-4 px6 rounded-lg">
           <Text>Google Calendar</Text>
-          <Button
-            variant="secondary"
-            size="sm"
-            onClick={() => signIn('google')}
-          >
-            Conectar
-            <ArrowRight />
-          </Button>
+          {isAuthenticated ? (
+            <Button size="sm" disabled>
+              Conectado
+              <Check />
+            </Button>
+          ) : (
+            <Button variant="secondary" size="sm" onClick={handleLogin}>
+              Conectar
+              <ArrowRight />
+            </Button>
+          )}
         </div>
         {permissionsWasRejected && (
           <Form.error>
             Habilite as permissões ao Google Calendar para continuar
           </Form.error>
         )}
-        <Button type="submit">
+        <Button type="submit" disabled={!isAuthenticated}>
           Próximo passo
           <ArrowRight />
         </Button>
