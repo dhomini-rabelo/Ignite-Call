@@ -32,7 +32,7 @@ export default function ConnectCalendar() {
         <MultiStep size={4} currentStep={2} />
       </header>
       <Box className="mt-6 flex flex-col gap-4 px-0">
-        <div className="flex items-center justify-between border border-Gray-600 px-4 px6 rounded-lg">
+        <div className="flex items-center justify-between border border-Gray-600 px-4 rounded-lg">
           <Text>Google Calendar</Text>
           {isAuthenticated ? (
             <Button size="sm" disabled>

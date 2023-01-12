@@ -1,4 +1,14 @@
-import { Box, Button, Heading, MultiStep, Text } from '@ignite-ui/react'
+import {
+  Box,
+  Button,
+  Checkbox,
+  Heading,
+  MultiStep,
+  Text,
+  TextInput,
+} from '@ignite-ui/react'
+import { ArrowRight } from 'phosphor-react'
+import { Div } from './style'
 
 export default function TimerIntervals() {
   return (
@@ -13,13 +23,23 @@ export default function TimerIntervals() {
         </Text>
         <MultiStep size={4} currentStep={3} />
       </header>
-      <Box as="form" className="flex flex-col mt-6">
+      <Box as="form" className="flex flex-col mt-6 px-0">
         <div className="rounded-lg mb-4 border border-Gray-600">
           <div className="flex items-center justify-between py-3 px-4 border-t border-Gray-600">
-            <div className="flex items-center gap-3"></div>
-            <div className="flex items-center gap-2"></div>
+            <div className="flex items-center gap-3">
+              <Checkbox />
+              <Text>Segunda-feira</Text>
+            </div>
+            <Div.intervals className="flex items-center gap-2">
+              <TextInput size="sm" type="time" step="60" />
+              <TextInput size="sm" type="time" step="60" />
+            </Div.intervals>
           </div>
         </div>
+        <Button>
+          Próximo passo
+          <ArrowRight />
+        </Button>
       </Box>
     </main>
   )
