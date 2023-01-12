@@ -1,12 +1,46 @@
-import { User } from 'next-auth'
 import { Adapter } from 'next-auth/adapters'
 import { prisma } from '../../settings/backend'
+import type { NextApiRequest, NextApiResponse } from 'next'
+import { destroyCookie, parseCookies } from 'nookies'
 
-export function PrismaAdapter(): Adapter {
+export function PrismaAdapter(
+  req: NextApiRequest,
+  res: NextApiResponse,
+): Adapter {
   return {
-    async createUser(user) { },
+    async createUser(user) {
+      const { '@ignite-call:userId': userIdInCookies } = parseCookies({ req })
 
-    async getUser(id: string) {
+      if (!userIdInCookies) {
+        throw new Error('User ID not found in cookies')
+      }
+
+      const updatedUser = await prisma.user.update({
+        where: {
+          id: userIdInCookies,
+        },
+        data: {
+          name: user.name,
+          email: user.email!,
+          avatar_url: user.avatar_url!,
+        },
+      })
+
+      destroyCookie({ res }, '@ignite-call:userId', {
+        path: '/',
+      })
+
+      return {
+        id: updatedUser.id,
+        name: updatedUser.name,
+        email: updatedUser.email!,
+        username: updatedUser.username,
+        avatar_url: updatedUser.avatar_url!,
+        emailVerified: null,
+      }
+    },
+
+    async getUser(id) {
       const user = await prisma.user.findUniqueOrThrow({
         where: {
           id,
@@ -22,7 +56,7 @@ export function PrismaAdapter(): Adapter {
       }
     },
 
-    async getUserByEmail(email: string) {
+    async getUserByEmail(email) {
       const user = await prisma.user.findUniqueOrThrow({
         where: {
           email,
@@ -154,6 +188,14 @@ export function PrismaAdapter(): Adapter {
         expires: updatedSession.expires,
         sessionToken: updatedSession.session_token,
       }
+    },
+
+    async deleteSession(sessionToken) {
+      await prisma.session.delete({
+        where: {
+          session_token: sessionToken,
+        },
+      })
     },
   }
 }
