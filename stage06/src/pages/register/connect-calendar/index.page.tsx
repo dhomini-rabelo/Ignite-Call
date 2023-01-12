@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import { ArrowRight, Check } from 'phosphor-react'
 import { Form } from '../../../styles/form'
 
-export default function Register() {
+export default function ConnectCalendar() {
   const router = useRouter()
   const session = useSession()
 
