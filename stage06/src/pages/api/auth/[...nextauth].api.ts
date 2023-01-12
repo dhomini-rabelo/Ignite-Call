@@ -1,5 +1,5 @@
 import NextAuth, { NextAuthOptions } from 'next-auth'
-import GoogleProvider from 'next-auth/providers/google'
+import GoogleProvider, { GoogleProfile } from 'next-auth/providers/google'
 import { PrismaAdapter } from '../../../code/modules/auth/prismaAdapter'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
@@ -23,6 +23,14 @@ export function buildNextAuthOptions(
             ].join(' '),
           },
         },
+        profile: (userProfile: GoogleProfile) => ({
+          id: userProfile.sub,
+          name: userProfile.name,
+          username: '',
+          email: userProfile.email,
+          avatar_url: userProfile.picture,
+          emailVerified: null,
+        }),
       }),
     ],
     callbacks: {
@@ -33,6 +41,12 @@ export function buildNextAuthOptions(
           return '/register/connect-calendar?error=permissions'
         }
         return true
+      },
+      async session({ session, user }) {
+        return {
+          ...session,
+          user,
+        }
       },
     },
   }
