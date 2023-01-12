@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import { setCookie } from 'nookies'
-import { prisma } from '../../../code/settings/backend'
+import { prisma, USER_ID_COOKIE_NAME } from '../../../code/settings/backend'
 
 export default async function handler(
   req: NextApiRequest,
@@ -33,7 +33,7 @@ export default async function handler(
     },
   })
 
-  setCookie({ res }, '@ignite-call:userId', user.id, {
+  setCookie({ res }, USER_ID_COOKIE_NAME, user.id, {
     maxAge: 60 * 60 * 24 * 7, // 7 days
     path: '/',
   })

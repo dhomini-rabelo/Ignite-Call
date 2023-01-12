@@ -1,5 +1,5 @@
 import { Adapter } from 'next-auth/adapters'
-import { prisma } from '../../settings/backend'
+import { prisma, USER_ID_COOKIE_NAME } from '../../settings/backend'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { destroyCookie, parseCookies } from 'nookies'
 
@@ -9,7 +9,8 @@ export function PrismaAdapter(
 ): Adapter {
   return {
     async createUser(user) {
-      const { '@ignite-call:userId': userIdInCookies } = parseCookies({ req })
+      const cookies = parseCookies({ req })
+      const userIdInCookies = cookies[USER_ID_COOKIE_NAME]
 
       if (!userIdInCookies) {
         throw new Error('User ID not found in cookies')
@@ -26,7 +27,7 @@ export function PrismaAdapter(
         },
       })
 
-      destroyCookie({ res }, '@ignite-call:userId', {
+      destroyCookie({ res }, USER_ID_COOKIE_NAME, {
         path: '/',
       })
 
