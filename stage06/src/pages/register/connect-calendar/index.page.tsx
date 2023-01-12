@@ -9,6 +9,7 @@ export default function Register() {
   const session = useSession()
 
   const permissionsWasRejected = !!router.query.error
+  const isLoading = session.status === 'loading'
   const isAuthenticated =
     session.status === 'authenticated' && !permissionsWasRejected
 
@@ -39,7 +40,12 @@ export default function Register() {
               <Check />
             </Button>
           ) : (
-            <Button variant="secondary" size="sm" onClick={handleLogin}>
+            <Button
+              variant="secondary"
+              size="sm"
+              onClick={handleLogin}
+              disabled={isLoading}
+            >
               Conectar
               <ArrowRight />
             </Button>
@@ -50,7 +56,7 @@ export default function Register() {
             Habilite as permissões ao Google Calendar para continuar
           </Form.error>
         )}
-        <Button type="submit" disabled={!isAuthenticated}>
+        <Button type="submit" disabled={!isAuthenticated || isLoading}>
           Próximo passo
           <ArrowRight />
         </Button>
