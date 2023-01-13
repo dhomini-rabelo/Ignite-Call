@@ -15,6 +15,7 @@ import {
   ITimerIntervalsOutputSchema,
   timerIntervalsSchema,
 } from '../../../code/schemas/validations/timerIntervals'
+import { client } from '../../../code/settings/frontend'
 import { getWeekDays } from '../../../code/utils/date'
 import { Form } from '../../../styles/form'
 import { Div } from './style'
@@ -50,6 +51,9 @@ export default function TimerIntervals() {
   async function handleSetTimerIntervals(data: any) {
     const formData = data as ITimerIntervalsOutputSchema
     console.log(formData)
+    await client.post('users/timer-intervals', {
+      intervals: formData.intervals,
+    })
   }
 
   return (
