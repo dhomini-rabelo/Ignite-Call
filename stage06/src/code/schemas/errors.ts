@@ -14,7 +14,7 @@ export const DynamicErrorMessage = {
   maxLength: (maxLengthValue: number) =>
     `Use menos que ${maxLengthValue} letras`,
   minValue: (minValueNumber: number) =>
-    `Este campo deve ser no mínimo ${minValueNumber}`,
+    `O valor mínimo deve ser ${minValueNumber}`,
   maxValue: (maxValueNumber: number) =>
-    `Este campo deve ser no máximo ${maxValueNumber}`,
+    `O valor máximo deve ser ${maxValueNumber}`,
 } as const
