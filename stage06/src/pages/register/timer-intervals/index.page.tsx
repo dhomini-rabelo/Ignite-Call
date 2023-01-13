@@ -1,3 +1,4 @@
+import { zodResolver } from '@hookform/resolvers/zod'
 import {
   Box,
   Button,
@@ -9,7 +10,13 @@ import {
 } from '@ignite-ui/react'
 import { ArrowRight } from 'phosphor-react'
 import { Controller, useFieldArray, useForm } from 'react-hook-form'
+import {
+  ITimerIntervalsInputSchema,
+  ITimerIntervalsOutputSchema,
+  timerIntervalsSchema,
+} from '../../../code/schemas/validations/timerIntervals'
 import { getWeekDays } from '../../../code/utils/date'
+import { Form } from '../../../styles/form'
 import { Div } from './style'
 
 export default function TimerIntervals() {
@@ -18,17 +25,18 @@ export default function TimerIntervals() {
     control,
     handleSubmit,
     watch,
-    formState: { errors, isSubmitting },
-  } = useForm({
+    formState: { isSubmitting, errors },
+  } = useForm<ITimerIntervalsInputSchema>({
+    resolver: zodResolver(timerIntervalsSchema),
     defaultValues: {
       intervals: [
-        { weekday: 0, enabled: false, startTime: '08:00', endTime: '18:00' },
-        { weekday: 1, enabled: true, startTime: '08:00', endTime: '18:00' },
-        { weekday: 2, enabled: true, startTime: '08:00', endTime: '18:00' },
-        { weekday: 3, enabled: true, startTime: '08:00', endTime: '18:00' },
-        { weekday: 4, enabled: true, startTime: '08:00', endTime: '18:00' },
-        { weekday: 5, enabled: true, startTime: '08:00', endTime: '18:00' },
-        { weekday: 6, enabled: false, startTime: '08:00', endTime: '18:00' },
+        { weekDay: 0, enabled: false, startTime: '08:00', endTime: '18:00' },
+        { weekDay: 1, enabled: true, startTime: '08:00', endTime: '18:00' },
+        { weekDay: 2, enabled: true, startTime: '08:00', endTime: '18:00' },
+        { weekDay: 3, enabled: true, startTime: '08:00', endTime: '18:00' },
+        { weekDay: 4, enabled: true, startTime: '08:00', endTime: '18:00' },
+        { weekDay: 5, enabled: true, startTime: '08:00', endTime: '18:00' },
+        { weekDay: 6, enabled: false, startTime: '08:00', endTime: '18:00' },
       ],
     },
   })
@@ -39,7 +47,10 @@ export default function TimerIntervals() {
   const weekdays = getWeekDays()
   const intervals = watch('intervals')
 
-  async function handleSetTImerIntervals() { }
+  async function handleSetTimerIntervals(data: any) {
+    const formData = data as ITimerIntervalsOutputSchema
+    console.log(formData)
+  }
 
   return (
     <main className="max-w-[572px] mt-20 mx-auto mb-4 px-4">
@@ -56,7 +67,7 @@ export default function TimerIntervals() {
       <Box
         as="form"
         className="flex flex-col mt-6 px-0"
-        onSubmit={handleSubmit(handleSetTImerIntervals)}
+        onSubmit={handleSubmit(handleSetTimerIntervals)}
       >
         <div className="rounded-lg mb-4 border border-Gray-600">
           {fields.map((field) => (
@@ -66,7 +77,7 @@ export default function TimerIntervals() {
             >
               <div className="flex items-center gap-3">
                 <Controller
-                  name={`intervals.${field.weekday}.enabled`}
+                  name={`intervals.${field.weekDay}.enabled`}
                   control={control}
                   render={({ field }) => (
                     <Checkbox
@@ -77,28 +88,36 @@ export default function TimerIntervals() {
                     />
                   )}
                 />
-                <Text>{weekdays[field.weekday]}</Text>
+                <Text>{weekdays[field.weekDay]}</Text>
               </div>
               <Div.intervals className="flex items-center gap-2">
                 <TextInput
                   size="sm"
                   type="time"
                   step="60"
-                  disabled={intervals[field.weekday].enabled === false}
-                  {...register(`intervals.${field.weekday}.startTime`)}
+                  disabled={intervals[field.weekDay].enabled === false}
+                  {...register(`intervals.${field.weekDay}.startTime`)}
                 />
                 <TextInput
                   size="sm"
                   type="time"
                   step="60"
-                  disabled={intervals[field.weekday].enabled === false}
-                  {...register(`intervals.${field.weekday}.endTime`)}
+                  disabled={intervals[field.weekDay].enabled === false}
+                  {...register(`intervals.${field.weekDay}.endTime`)}
                 />
               </Div.intervals>
             </div>
           ))}
         </div>
-        <Button>
+        {errors.intervals && (
+          <Form.error className="my-2">{errors.intervals.message}</Form.error>
+        )}
+        <Button
+          disabled={
+            intervals.filter((interval) => interval.enabled).length === 0 ||
+            isSubmitting
+          }
+        >
           Próximo passo
           <ArrowRight />
         </Button>
