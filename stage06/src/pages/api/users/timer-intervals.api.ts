@@ -19,7 +19,7 @@ export default async function handler(
   res: NextApiResponse,
 ) {
   if (req.method !== 'POST') {
-    return res.status(405)
+    return res.status(405).end()
   }
 
   const session = await unstable_getServerSession(
@@ -29,7 +29,7 @@ export default async function handler(
   )
 
   if (!session) {
-    return res.status(401)
+    return res.status(401).end()
   }
 
   const { intervals } = timerIntervalsSchema.parse(req.body)
