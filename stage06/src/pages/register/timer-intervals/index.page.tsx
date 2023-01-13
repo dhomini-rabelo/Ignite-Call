@@ -8,7 +8,7 @@ import {
   TextInput,
 } from '@ignite-ui/react'
 import { ArrowRight } from 'phosphor-react'
-import { useFieldArray, useForm } from 'react-hook-form'
+import { Controller, useFieldArray, useForm } from 'react-hook-form'
 import { getWeekDays } from '../../../code/utils/date'
 import { Div } from './style'
 
@@ -17,6 +17,7 @@ export default function TimerIntervals() {
     register,
     control,
     handleSubmit,
+    watch,
     formState: { errors, isSubmitting },
   } = useForm({
     defaultValues: {
@@ -36,7 +37,7 @@ export default function TimerIntervals() {
     name: 'intervals',
   })
   const weekdays = getWeekDays()
-  console.log({ weekdays })
+  const intervals = watch('intervals')
 
   async function handleSetTImerIntervals() { }
 
@@ -64,7 +65,18 @@ export default function TimerIntervals() {
               key={field.id}
             >
               <div className="flex items-center gap-3">
-                <Checkbox />
+                <Controller
+                  name={`intervals.${field.weekday}.enabled`}
+                  control={control}
+                  render={({ field }) => (
+                    <Checkbox
+                      onCheckedChange={(checked) =>
+                        field.onChange(checked === true)
+                      }
+                      checked={field.value}
+                    />
+                  )}
+                />
                 <Text>{weekdays[field.weekday]}</Text>
               </div>
               <Div.intervals className="flex items-center gap-2">
@@ -72,12 +84,14 @@ export default function TimerIntervals() {
                   size="sm"
                   type="time"
                   step="60"
+                  disabled={intervals[field.weekday].enabled === false}
                   {...register(`intervals.${field.weekday}.startTime`)}
                 />
                 <TextInput
                   size="sm"
                   type="time"
                   step="60"
+                  disabled={intervals[field.weekday].enabled === false}
                   {...register(`intervals.${field.weekday}.endTime`)}
                 />
               </Div.intervals>
