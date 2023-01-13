@@ -7,3 +7,8 @@ export function getWeekDays() {
     )
     .map((dayName) => dayName[0].toUpperCase() + dayName.slice(1))
 }
+
+export function convertTimeStringInMinutes(timeString: string) {
+  const [hours, minutes] = timeString.split(':').map(Number)
+  return hours * 60 + minutes
+}
