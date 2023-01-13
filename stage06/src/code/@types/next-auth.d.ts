@@ -9,4 +9,7 @@ declare module 'next-auth' {
     avatar_url: string
     emailVerified: null
   }
+  export interface Session {
+    user: User
+  }
 }
