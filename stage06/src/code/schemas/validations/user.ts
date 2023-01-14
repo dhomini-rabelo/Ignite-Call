@@ -16,3 +16,9 @@ export const registerSchema = claimUsernameSchema.extend({
 })
 
 export type IRegisterSchema = zod.infer<typeof registerSchema>
+
+export const updateUserSchema = zod.object({
+  bio: zod.string(),
+})
+
+export type IUpdateUserSchema = zod.infer<typeof updateUserSchema>
