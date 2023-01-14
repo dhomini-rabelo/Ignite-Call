@@ -1,13 +1,69 @@
 import { Text } from '@ignite-ui/react'
 import dayjs from 'dayjs'
 import { CaretLeft, CaretRight } from 'phosphor-react'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { Div, Table } from './styles'
+
+interface IWeek {
+  week: number
+  days: Array<{
+    date: dayjs.Dayjs
+    disabled: boolean
+  }>
+}
+
+type ICalendarWeeks = IWeek[]
 
 export function Calendar() {
   const [currentDate, setCurrentDate] = useState(() => dayjs().set('date', 1))
   const currentMonth = currentDate.format('MMMM')
   const currentYear = currentDate.format('YYYY')
+  const currentWeeks = useMemo(() => {
+    const daysInMonth = Array.from({
+      length: currentDate.daysInMonth(),
+    }).map((_, i) => currentDate.set('date', i + 1))
+
+    const firstWeekDayInMonth = currentDate.get('day')
+
+    const fillDaysFromLastMonth = Array.from({
+      length: firstWeekDayInMonth,
+    })
+      .map((_, i) => currentDate.subtract(i + 1, 'day'))
+      .reverse()
+
+    const lastDayInMonth = currentDate.set('date', currentDate.daysInMonth())
+    const lastWeekDayInMonth = lastDayInMonth.get('day')
+
+    const fillDaysFromNextMonth = Array.from({
+      length: 7 - (lastWeekDayInMonth + 1),
+    }).map((_, i) => lastDayInMonth.add(i + 1, 'day'))
+
+    const calendarDays = [
+      ...fillDaysFromLastMonth.map((date) => ({ date, disabled: true })),
+      ...daysInMonth.map((date) => ({ date, disabled: false })),
+      ...fillDaysFromNextMonth.map((date) => ({ date, disabled: true })),
+    ]
+
+    const calendarWeeks = calendarDays.reduce<ICalendarWeeks>(
+      (weeks, _, i, originalArray) => {
+        const isFirstDayInWeek = i % 7 === 0
+
+        if (isFirstDayInWeek) {
+          weeks.push({
+            week: i / 7 + 1,
+            days: originalArray.slice(i, i + 7),
+          })
+        }
+
+        return weeks
+      },
+      [],
+    )
+
+    return calendarWeeks
+  }, [currentDate])
+
+  console.log(currentWeeks)
 
   function handlePreviousMonth() {
     const previousMonth = currentDate.subtract(1, 'month')
@@ -47,29 +103,15 @@ export function Calendar() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>
-              <button>1</button>
-            </td>
-            <td>
-              <button>2</button>
-            </td>
-            <td>
-              <button>3</button>
-            </td>
-            <td>
-              <button>4</button>
-            </td>
-            <td>
-              <button>5</button>
-            </td>
-            <td>
-              <button>6</button>
-            </td>
-            <td>
-              <button>7</button>
-            </td>
-          </tr>
+          {currentWeeks.map(({ week, days }) => (
+            <tr key={week}>
+              {days.map(({ date, disabled }) => (
+                <td key={date.toString()}>
+                  <button disabled={disabled}>{date.get('date')}</button>
+                </td>
+              ))}
+            </tr>
+          ))}
         </tbody>
       </Table.calendar>
     </div>

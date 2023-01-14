@@ -65,7 +65,7 @@ export const Table = {
       },
 
       '&:focus': {
-        boxShadow: '0 0 0 2px $colors$gray100',
+        boxShadow: '0 0 0 2px $colors$gray100 inset',
       },
     },
   }),
