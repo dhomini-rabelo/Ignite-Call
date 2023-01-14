@@ -8,6 +8,7 @@ import {
   Text,
   TextInput,
 } from '@ignite-ui/react'
+import { useRouter } from 'next/router'
 import { ArrowRight } from 'phosphor-react'
 import { Controller, useFieldArray, useForm } from 'react-hook-form'
 import {
@@ -41,6 +42,7 @@ export default function TimerIntervals() {
       ],
     },
   })
+  const router = useRouter()
   const { fields } = useFieldArray({
     control,
     name: 'intervals',
@@ -50,10 +52,10 @@ export default function TimerIntervals() {
 
   async function handleSetTimerIntervals(data: any) {
     const formData = data as ITimerIntervalsOutputSchema
-    console.log(formData)
     await client.post('users/timer-intervals', {
       intervals: formData.intervals,
     })
+    await router.push('register/update-profile')
   }
 
   return (

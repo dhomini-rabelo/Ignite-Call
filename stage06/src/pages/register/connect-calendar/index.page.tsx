@@ -13,10 +13,12 @@ export default function ConnectCalendar() {
   const isAuthenticated =
     session.status === 'authenticated' && !permissionsWasRejected
 
-  console.log(session)
-
   function handleLogin() {
     signIn('google')
+  }
+
+  async function handleNavigateToNextStep() {
+    await router.push('register/timer-intervals')
   }
 
   return (
@@ -56,7 +58,11 @@ export default function ConnectCalendar() {
             Habilite as permissões ao Google Calendar para continuar
           </Form.error>
         )}
-        <Button type="submit" disabled={!isAuthenticated || isLoading}>
+        <Button
+          type="submit"
+          onClick={handleNavigateToNextStep}
+          disabled={!isAuthenticated || isLoading}
+        >
           Próximo passo
           <ArrowRight />
         </Button>
