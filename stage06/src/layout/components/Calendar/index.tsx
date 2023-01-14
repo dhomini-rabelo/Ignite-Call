@@ -1,25 +1,41 @@
 import { Text } from '@ignite-ui/react'
+import dayjs from 'dayjs'
 import { CaretLeft, CaretRight } from 'phosphor-react'
+import { useState } from 'react'
 import { Div, Table } from './styles'
 
 export function Calendar() {
+  const [currentDate, setCurrentDate] = useState(() => dayjs().set('date', 1))
+  const currentMonth = currentDate.format('MMMM')
+  const currentYear = currentDate.format('YYYY')
+
+  function handlePreviousMonth() {
+    const previousMonth = currentDate.subtract(1, 'month')
+    setCurrentDate(previousMonth)
+  }
+
+  function handleNextMonth() {
+    const nextMonth = currentDate.add(1, 'month')
+    setCurrentDate(nextMonth)
+  }
+
   return (
-    <div className="flex flex-col gap-6 p-6 col-span-1">
+    <div className="flex flex-col gap-6 p-6">
       <div className="flex items-center justify-between">
-        <Text size="md">
-          Dezembro <span className="text-Gray-200">2022</span>
+        <Text size="md" className="capitalize">
+          {currentMonth} <span className="text-Gray-200">{currentYear}</span>
         </Text>
         <Div.changeMonth className="flex gap-2 text-Gray-200">
-          <button>
+          <button onClick={handlePreviousMonth} title="previous month">
             <CaretLeft />
           </button>
-          <button>
+          <button onClick={handleNextMonth} title="next month">
             <CaretRight />
           </button>
         </Div.changeMonth>
       </div>
       <Table.calendar className="w-full border-spacing-1 table-fixed">
-        <thead className="text-Gray-200 font-medium">
+        <thead>
           <tr>
             <th>DOM.</th>
             <th>SEG.</th>
