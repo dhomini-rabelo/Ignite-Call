@@ -1,16 +1,18 @@
 import { Text } from '@ignite-ui/react'
+import { useState } from 'react'
 import { Calendar } from '../../../../../../layout/components/Calendar'
 import { Div } from './styles'
 
 export function CalendarStep() {
-  const dateIsSelected = false
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null)
+  const dateIsSelected = selectedDate !== null
 
   return (
     <Div.container
       isTimePickerOpen={dateIsSelected}
       className="mt-6 mx-auto px-0 grid relative"
     >
-      <Calendar />
+      <Calendar selectedDate={selectedDate} onDateSelected={setSelectedDate} />
       {dateIsSelected && (
         <div className="border-l border-Gray-600 pt-6 px-6 overflow-y-scroll absolute top-0 bottom-0 right-0">
           <Text size="md">
