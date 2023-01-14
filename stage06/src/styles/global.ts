@@ -21,7 +21,7 @@ export const globalStyles = globalCss({
   //   margin: '0 auto',
   // },
 
-  'body, input, textarea, button': {
+  'body, input, textarea, button, table': {
     fontFamily: 'Roboto',
     fontWeight: 400,
   },
