@@ -3,7 +3,7 @@ import { Calendar } from '../../../../../../layout/components/Calendar'
 import { Div } from './styles'
 
 export function CalendarStep() {
-  const dateIsSelected = true
+  const dateIsSelected = false
 
   return (
     <Div.container

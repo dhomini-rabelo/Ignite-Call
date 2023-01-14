@@ -2,6 +2,10 @@ import type { AppProps } from 'next/app'
 import { globalStyles } from '../styles/global'
 import { SessionProvider } from 'next-auth/react'
 import '../styles/global.css'
+import dayjs from 'dayjs'
+import 'dayjs/locale/pt-br'
+
+dayjs.locale('pt-br')
 
 globalStyles()
 

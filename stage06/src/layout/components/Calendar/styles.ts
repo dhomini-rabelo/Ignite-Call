@@ -26,6 +26,14 @@ export const Div = {
 
 export const Table = {
   calendar: styled('table', {
+    fontFamily: '$default',
+
+    th: {
+      fontSize: '$sm',
+      fontWeight: '$medium',
+      color: '$gray200',
+    },
+
     'tbody:before': {
       content: '.',
       lineHeight: '0.75rem',
@@ -57,7 +65,7 @@ export const Table = {
       },
 
       '&:focus': {
-        boxShadow: '0 0 0 1px $colors$gray100',
+        boxShadow: '0 0 0 2px $colors$gray100',
       },
     },
   }),
