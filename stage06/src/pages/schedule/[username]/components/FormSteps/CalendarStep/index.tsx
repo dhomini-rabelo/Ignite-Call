@@ -1,17 +1,39 @@
 import { Text } from '@ignite-ui/react'
 import dayjs from 'dayjs'
-import { useState } from 'react'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
+import { client } from '../../../../../../code/settings/frontend'
 import { Calendar } from '../../../../../../layout/components/Calendar'
 import { Div } from './styles'
 
+interface IAvailability {
+  possibleHours: number[]
+  availabilityHours: number[]
+}
+
 export function CalendarStep() {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null)
+  const [availability, setAvailability] = useState<IAvailability | null>(null)
+  const router = useRouter()
+  const username = String(router.query.username)
   const dateIsSelected = selectedDate !== null
 
   const weekDayInfo = selectedDate && {
     name: dayjs(selectedDate).format('dddd'),
     dayDescription: dayjs(selectedDate).format('DD[ de ]MMMM'),
   }
+
+  useEffect(() => {
+    if (selectedDate) {
+      client
+        .get(`users/${username}/availability`, {
+          params: {
+            date: dayjs(selectedDate).format('YYYY-MM-DD'),
+          },
+        })
+        .then((response) => setAvailability(response.data))
+    }
+  }, [selectedDate, username])
 
   return (
     <Div.container
@@ -26,22 +48,15 @@ export function CalendarStep() {
             <span className="text-Gray-200">{weekDayInfo!.dayDescription}</span>
           </Text>
           <Div.timePicker className="mt-3 grid gap-2">
-            <button>08:00h</button>
-            <button>08:00h</button>
-            <button>08:00h</button>
-            <button>08:00h</button>
-            <button>08:00h</button>
-            <button>08:00h</button>
-            <button>08:00h</button>
-            <button>08:00h</button>
-            <button>08:00h</button>
-            <button>08:00h</button>
-            <button>08:00h</button>
-            <button>08:00h</button>
-            <button>08:00h</button>
-            <button>08:00h</button>
-            <button>08:00h</button>
-            <button>08:00h</button>
+            {availability?.possibleHours.map((hour) => (
+              <button
+                type="button"
+                key="hour"
+                disabled={!availability.availabilityHours.includes(hour)}
+              >
+                {String(hour).padStart(2, '0')}:00h
+              </button>
+            ))}
           </Div.timePicker>
         </div>
       )}
