@@ -12,7 +12,11 @@ interface IAvailability {
   availabilityHours: number[]
 }
 
-export function CalendarStep() {
+interface Props {
+  onSelectDatetime: (date: Date) => void
+}
+
+export function CalendarStep({ onSelectDatetime }: Props) {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null)
   const router = useRouter()
   const username = String(router.query.username)
@@ -37,6 +41,12 @@ export function CalendarStep() {
     name: dayjs(selectedDate).format('dddd'),
     dayDescription: dayjs(selectedDate).format('DD[ de ]MMMM'),
   }
+
+  function handleSelectTime(hour: number) {
+    const dateTime = dayjs(selectedDate).set('hour', hour).startOf('hour')
+    onSelectDatetime(dateTime.toDate())
+  }
+
   return (
     <Div.container
       isTimePickerOpen={dateIsSelected}
@@ -54,6 +64,7 @@ export function CalendarStep() {
               <button
                 type="button"
                 key={hour}
+                onClick={() => handleSelectTime(hour)}
                 disabled={!availability.availabilityHours.includes(hour)}
               >
                 {String(hour).padStart(2, '0')}:00h

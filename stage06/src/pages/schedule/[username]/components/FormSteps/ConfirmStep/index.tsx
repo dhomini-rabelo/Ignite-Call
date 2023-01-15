@@ -4,8 +4,13 @@ import { CalendarBlank, Clock } from 'phosphor-react'
 import { useForm } from 'react-hook-form'
 import { confirmStepSchema, IConfirmStepSchema } from './support/schema'
 import { Form } from '../../../../../../styles/form'
+import dayjs from 'dayjs'
 
-export function ConfirmStep() {
+interface Props {
+  schedulingDate: Date
+}
+
+export function ConfirmStep({ schedulingDate }: Props) {
   const {
     register,
     handleSubmit,
@@ -13,6 +18,10 @@ export function ConfirmStep() {
   } = useForm<IConfirmStepSchema>({
     resolver: zodResolver(confirmStepSchema),
   })
+  const schedulingDateInfo = {
+    formattedHour: dayjs(schedulingDate).format('HH:mm[h]'),
+    dayDescription: dayjs(schedulingDate).format('DD[ de ]MMMM'),
+  }
 
   function handleConfirmSchedule(data: IConfirmStepSchema) {
     console.log(data)
@@ -27,11 +36,11 @@ export function ConfirmStep() {
       <div className="flex items-center gap-4 pb-6 mb-2 border border-Gray-600">
         <Text className="flex items-center gap-2">
           <CalendarBlank className="text-Gray-200" size={20} />
-          22 de Setembro de 2022
+          {schedulingDateInfo.dayDescription}
         </Text>
         <Text className="flex items-center gap-2">
           <Clock className="text-Gray-200" size={20} />
-          18:00h
+          {schedulingDateInfo.formattedHour}
         </Text>
       </div>
 
