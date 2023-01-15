@@ -8,9 +8,10 @@ import dayjs from 'dayjs'
 
 interface Props {
   schedulingDate: Date
+  onCancel: () => void
 }
 
-export function ConfirmStep({ schedulingDate }: Props) {
+export function ConfirmStep({ schedulingDate, onCancel }: Props) {
   const {
     register,
     handleSubmit,
@@ -70,7 +71,12 @@ export function ConfirmStep({ schedulingDate }: Props) {
       </label>
 
       <div className="flex justify-end gap-2 mt-2">
-        <Button type="button" variant="tertiary" disabled={isSubmitting}>
+        <Button
+          type="button"
+          variant="tertiary"
+          disabled={isSubmitting}
+          onClick={onCancel}
+        >
           Cancelar
         </Button>
         <Button type="submit">Confirmar</Button>

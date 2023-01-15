@@ -4,8 +4,16 @@ import { ConfirmStep } from './ConfirmStep'
 
 export function ScheduleForm() {
   const [selectedDateTime, setSelectedDateTime] = useState<Date | null>(null)
+
+  function handleResetSelectedDateTime() {
+    setSelectedDateTime(null)
+  }
+
   return selectedDateTime ? (
-    <ConfirmStep schedulingDate={selectedDateTime} />
+    <ConfirmStep
+      schedulingDate={selectedDateTime}
+      onCancel={handleResetSelectedDateTime}
+    />
   ) : (
     <CalendarStep onSelectDatetime={setSelectedDateTime} />
   )
