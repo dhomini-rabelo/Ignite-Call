@@ -39,10 +39,11 @@ export default async function handler(
     },
   })
 
-  const daysWithoutAvailability = [0, 1, 2, 3, 4, 5, 6].filter((weekDay) =>
-    userAvailability.some(
-      (timeAvailability) => timeAvailability.week_day === weekDay,
-    ),
+  const daysWithoutAvailability = [0, 1, 2, 3, 4, 5, 6].filter(
+    (weekDay) =>
+      !userAvailability.some(
+        (timeAvailability) => timeAvailability.week_day === weekDay,
+      ),
   )
 
   return res.status(200).json({
