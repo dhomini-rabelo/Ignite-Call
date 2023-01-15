@@ -55,7 +55,7 @@ export default function TimerIntervals() {
     await client.post('users/timer-intervals', {
       intervals: formData.intervals,
     })
-    await router.push('register/update-profile')
+    await router.push('/register/update-profile')
   }
 
   return (
