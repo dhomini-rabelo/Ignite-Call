@@ -4,6 +4,8 @@ import { SessionProvider } from 'next-auth/react'
 import '../styles/global.css'
 import dayjs from 'dayjs'
 import 'dayjs/locale/pt-br'
+import { QueryClientProvider } from '@tanstack/react-query/build/lib/QueryClientProvider'
+import { queryClient } from '../code/settings/frontend'
 
 dayjs.locale('pt-br')
 
@@ -14,8 +16,10 @@ export default function App({
   pageProps: { session, ...pageProps },
 }: AppProps) {
   return (
-    <SessionProvider session={session}>
-      <Component {...pageProps} />
-    </SessionProvider>
+    <QueryClientProvider client={queryClient}>
+      <SessionProvider session={session}>
+        <Component {...pageProps} />
+      </SessionProvider>
+    </QueryClientProvider>
   )
 }
