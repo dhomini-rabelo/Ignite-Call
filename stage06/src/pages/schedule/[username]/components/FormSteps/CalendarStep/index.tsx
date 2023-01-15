@@ -1,7 +1,8 @@
 import { Text } from '@ignite-ui/react'
+import { useQuery } from '@tanstack/react-query'
 import dayjs from 'dayjs'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { client } from '../../../../../../code/settings/frontend'
 import { Calendar } from '../../../../../../layout/components/Calendar'
 import { Div } from './styles'
@@ -13,28 +14,29 @@ interface IAvailability {
 
 export function CalendarStep() {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null)
-  const [availability, setAvailability] = useState<IAvailability | null>(null)
   const router = useRouter()
   const username = String(router.query.username)
   const dateIsSelected = selectedDate !== null
+  const selectedDateAsString = dayjs(selectedDate).format('YYYY-MM-DD')
+  const { data: availability } = useQuery<IAvailability>(
+    ['availability', selectedDateAsString],
+    async () => {
+      const response = await client.get(`users/${username}/availability`, {
+        params: {
+          date: dayjs(selectedDate).format('YYYY-MM-DD'),
+        },
+      })
+      return response.data
+    },
+    {
+      enabled: !!selectedDate,
+    },
+  )
 
   const weekDayInfo = selectedDate && {
     name: dayjs(selectedDate).format('dddd'),
     dayDescription: dayjs(selectedDate).format('DD[ de ]MMMM'),
   }
-
-  useEffect(() => {
-    if (selectedDate) {
-      client
-        .get(`users/${username}/availability`, {
-          params: {
-            date: dayjs(selectedDate).format('YYYY-MM-DD'),
-          },
-        })
-        .then((response) => setAvailability(response.data))
-    }
-  }, [selectedDate, username])
-
   return (
     <Div.container
       isTimePickerOpen={dateIsSelected}
@@ -51,7 +53,7 @@ export function CalendarStep() {
             {availability?.possibleHours.map((hour) => (
               <button
                 type="button"
-                key="hour"
+                key={hour}
                 disabled={!availability.availabilityHours.includes(hour)}
               >
                 {String(hour).padStart(2, '0')}:00h

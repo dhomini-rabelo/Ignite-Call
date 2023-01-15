@@ -4,7 +4,7 @@ import { SessionProvider } from 'next-auth/react'
 import '../styles/global.css'
 import dayjs from 'dayjs'
 import 'dayjs/locale/pt-br'
-import { QueryClientProvider } from '@tanstack/react-query/build/lib/QueryClientProvider'
+import { QueryClientProvider } from '@tanstack/react-query'
 import { queryClient } from '../code/settings/frontend'
 
 dayjs.locale('pt-br')
