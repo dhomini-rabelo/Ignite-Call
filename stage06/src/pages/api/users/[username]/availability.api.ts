@@ -82,7 +82,9 @@ export default async function handler(
   )
 
   const availabilityHours = possibleHours.filter(
-    (hour) => !blockedHours.includes(hour),
+    (hour) =>
+      !blockedHours.includes(hour) &&
+      referenceDate.set('hour', hour).isBefore(new Date()),
   )
 
   return res.status(200).json({
