@@ -5,13 +5,15 @@ import { useForm } from 'react-hook-form'
 import { confirmStepSchema, IConfirmStepSchema } from './support/schema'
 import { Form } from '../../../../../../styles/form'
 import dayjs from 'dayjs'
+import { client } from '../../../../../../code/settings/frontend'
+import { useRouter } from 'next/router'
 
 interface Props {
   schedulingDate: Date
-  onCancel: () => void
+  onBack: () => void
 }
 
-export function ConfirmStep({ schedulingDate, onCancel }: Props) {
+export function ConfirmStep({ schedulingDate, onBack }: Props) {
   const {
     register,
     handleSubmit,
@@ -19,13 +21,22 @@ export function ConfirmStep({ schedulingDate, onCancel }: Props) {
   } = useForm<IConfirmStepSchema>({
     resolver: zodResolver(confirmStepSchema),
   })
+  const router = useRouter()
+  const username = String(router.query.username)
   const schedulingDateInfo = {
     formattedHour: dayjs(schedulingDate).format('HH:mm[h]'),
     dayDescription: dayjs(schedulingDate).format('DD[ de ]MMMM'),
   }
 
-  function handleConfirmSchedule(data: IConfirmStepSchema) {
-    console.log(data)
+  async function handleConfirmSchedule(data: IConfirmStepSchema) {
+    await client.post(`users/${username}/scheduling`, {
+      name: data.name,
+      email: data.email,
+      observations: data.observations,
+      date: schedulingDate,
+    })
+
+    onBack()
   }
 
   return (
@@ -75,7 +86,7 @@ export function ConfirmStep({ schedulingDate, onCancel }: Props) {
           type="button"
           variant="tertiary"
           disabled={isSubmitting}
-          onClick={onCancel}
+          onClick={onBack}
         >
           Cancelar
         </Button>
