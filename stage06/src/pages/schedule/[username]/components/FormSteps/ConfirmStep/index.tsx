@@ -90,7 +90,9 @@ export function ConfirmStep({ schedulingDate, onBack }: Props) {
         >
           Cancelar
         </Button>
-        <Button type="submit">Confirmar</Button>
+        <Button type="submit" disabled={isSubmitting}>
+          Confirmar
+        </Button>
       </div>
     </Box>
   )
