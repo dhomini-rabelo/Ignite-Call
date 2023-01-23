@@ -48,7 +48,7 @@ Neste página apenas informamos nosso username
 <h3>Passo 1 do cadastro - "/register?username=test"</h3>
 <h3><strong>/api/users</strong></h3>
 <p>
-Nesta página cadastramos nosso usuário no prisma (mysql) apenas com o username e seu nome completo, utilizando as APIs routes.
+Nesta página cadastramos nosso usuário com prisma (mysql) apenas com o username e seu nome completo, utilizando as APIs routes.
 </p>
 <br>
 <kbd><img src="./readme/pages/register.gif" alt="project-image"></kbd>
@@ -61,7 +61,7 @@ Nesta página cadastramos nosso usuário no prisma (mysql) apenas com o username
 <p>
 Nesta página fazemos a autenticação com o Google, a permissão de acesso ao Google Calendar é obrigatória para continuar. Para autenticar com o Google criamos
 nosso adapter personalizado(/stage06/src/code/modules/auth/prismaAdapter.ts), isso porque nosso usuário foi criado na rota anterior. Nosso username é enviado
-ao nosso adapter através dos cookies, onde utilizamos através da lib nookies.
+ao nosso adapter através dos cookies, onde manipulamos através da lib nookies.
 </p>
 <br>
 <kbd><img src="./readme/pages/register__connect-calendar.gif" alt="project-image"></kbd>
@@ -74,7 +74,7 @@ ao nosso adapter através dos cookies, onde utilizamos através da lib nookies.
 <h3><strong>/api/users/timer-intervals</strong></h3>
 <p>
 Nesta página cadastramos nossos horários e dias da semana que estamos livre para agendamento. Projetamos a estrutura de dados com zod, fazemos a validação no
-backend com zod, salvamos esses dados na tabela "user_time_intervals".
+backend com zod, e salvamos esses dados na tabela "user_time_intervals".
 </p>
 <br>
 <kbd><img src="./readme/pages/register__timer-intervals.gif" alt="project-image"></kbd>
