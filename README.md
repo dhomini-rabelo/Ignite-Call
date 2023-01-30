@@ -18,7 +18,7 @@ a pessoa que deseja marcar um horário com você, lá ela pode fazer sua escolha
     <li>nookies</li>
     <li>Tailwind</li>
     <li>Styled-components</li>
-    <li>Phosphor-reac</li>
+    <li>Phosphor-react</li>
     <li>dayjs</li>
     <li>react-query</li>
     <li>react-hook-form</li>
@@ -99,8 +99,9 @@ Nesta página cadastramos nossa bio e finalizamos o cadastro do usuário.
 <h3><strong>/api/users/[username]/availability</strong></h3>
 <h3><strong>/api/users/[username]/scheduling</strong></h3>
 <p>
-Esta é a página que enviamos para alguém marcar horário com o usuário. Para saber os dias e horários que estão disponíveis são consumidas duas APIs, 
-além de consumir outra quando salvamos os dados do agendamento.
+Esta é a página que enviamos para alguém marcar horário. Para saber os dias e horários que estão disponíveis são consumidas duas APIs, 
+além de consumir outra quando salvamos os dados do agendamento. Esta página usa SSG dinamicamente, ou seja uma versão estática da página é gerada a partir do
+primeiro acesso (com revalidação de em 2 horas), por essa página ser muito acessada o SSG garante uma ótima experiência para o usuário
 </p>
 <br>
 <kbd><img src="./readme/pages/schedule.gif" alt="project-image"></kbd>
