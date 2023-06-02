@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root {
+    --Blue-700: #1d3557;
+    --Red-700: #A4303F;
+    --Red-500: #e63946;
+    --Green-450: #2dba73;
+    --Green-500: #22a564;
+    --Green-550: #40916c;
+    --Green-650: #2d6a4f;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    width: 100%;
+}
+
+#__next {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;  
+}
+
+img {
+    display: block;
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+}
+
+:focus {
+    outline: transparent;
+    box-shadow: none;
+}
+
+.roboto, .roboto > * {
+    font-family: 'Roboto', Arial, sans-serif;
+}
