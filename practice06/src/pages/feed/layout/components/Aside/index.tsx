@@ -1,7 +1,8 @@
 import LogoIcon from '@/layout/assets/images/logo.svg'
-import { ChartLineUp } from '@phosphor-icons/react'
+import { Binoculars, ChartLineUp } from '@phosphor-icons/react'
 import Image from 'next/image'
-import { Div } from './styles'
+import { A, Div } from './styles'
+import Link from 'next/link'
 
 export default function AsideNav() {
   return (
@@ -13,12 +14,25 @@ export default function AsideNav() {
           height={32}
           alt="Logo do projeto BookWise"
         />
-        <nav className="block mt-16">
-          <a href="" className="flex gap-x-3 ml-4">
-            <Div.bar />
+        <nav className="mt-16 flex flex-col gap-y-4">
+          <A.NavLink
+            active={window.location.pathname === '/feed'}
+            href="/feed"
+            className="flex gap-x-3 ml-4 relative"
+          >
+            <div className="bar" />
             <ChartLineUp size={24} />
-            <strong className="text-Gray-100 leading-relaxed">Início</strong>
-          </a>
+            <strong className="leading-relaxed">Início</strong>
+          </A.NavLink>
+          <A.NavLink
+            active={false}
+            href=""
+            className="flex gap-x-3 ml-4 relative"
+          >
+            <div className="bar" />
+            <Binoculars size={24} />
+            <strong className="leading-relaxed">Explorar</strong>
+          </A.NavLink>
         </nav>
       </div>
     </aside>
