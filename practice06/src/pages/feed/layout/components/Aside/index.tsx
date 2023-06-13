@@ -1,5 +1,5 @@
 import LogoIcon from '@/layout/assets/images/logo.svg'
-import { Binoculars, ChartLineUp } from '@phosphor-icons/react'
+import { Binoculars, ChartLineUp, SignIn } from '@phosphor-icons/react'
 import Image from 'next/image'
 import { A, Div } from './styles'
 import Link from 'next/link'
@@ -35,6 +35,10 @@ export default function AsideNav() {
           </A.NavLink>
         </nav>
       </div>
+      <Link href="/" className="flex gap-x-3 items-center">
+        <strong className="text-Gray-100">Fazer Login</strong>
+        <SignIn size={20} className="text-Green-100" />
+      </Link>
     </aside>
   )
 }
