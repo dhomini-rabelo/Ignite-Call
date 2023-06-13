@@ -1,8 +1,6 @@
 import { styled } from '@/layout/styles/stitches.config'
 import Link from 'next/link'
 
-export const Div = {}
-
 export const A = {
   NavLink: styled(Link, {
     variants: {

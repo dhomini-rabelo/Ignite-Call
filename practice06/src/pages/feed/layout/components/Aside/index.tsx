@@ -1,7 +1,7 @@
 import LogoIcon from '@/layout/assets/images/logo.svg'
 import { Binoculars, ChartLineUp, SignIn } from '@phosphor-icons/react'
 import Image from 'next/image'
-import { A, Div } from './styles'
+import { A } from './styles'
 import Link from 'next/link'
 
 export default function AsideNav() {
