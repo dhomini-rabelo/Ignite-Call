@@ -2,6 +2,7 @@ import Image from 'next/image'
 import HomeImage from '@/layout/assets/images/home.png'
 import GoogleIcon from '@/layout/assets/images/google.svg'
 import RocketIcon from '@/layout/assets/images/rocket.svg'
+import Link from 'next/link'
 
 export default function Home() {
   return (
@@ -30,15 +31,17 @@ export default function Home() {
               />
               <strong>Entrar com Google</strong>
             </button>
-            <button className="w-full bg-Gray-600 rounded-lg flex items-center gap-x-5 text-Gray-200 py-5 px-6">
-              <Image
-                src={RocketIcon}
-                width={32}
-                height={32}
-                alt="Ícone de foguete"
-              />
-              <strong>Acessar como visitante</strong>
-            </button>
+            <Link href="/feed">
+              <button className="w-full bg-Gray-600 rounded-lg flex items-center gap-x-5 text-Gray-200 py-5 px-6">
+                <Image
+                  src={RocketIcon}
+                  width={32}
+                  height={32}
+                  alt="Ícone de foguete"
+                />
+                <strong>Acessar como visitante</strong>
+              </button>
+            </Link>
           </div>
         </section>
       </div>
