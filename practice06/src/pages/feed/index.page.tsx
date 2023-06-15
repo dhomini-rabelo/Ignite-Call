@@ -1,9 +1,11 @@
 import AsideNav from './layout/components/Aside'
+import Content from './page/components/Content'
 
 export default function FeedPage() {
   return (
-    <main className="grow bg-Gray-800 py-5 text-white flex justify-between">
+    <main className="grow bg-Gray-800 py-5 text-Gray-100 flex">
       <AsideNav />
+      <Content />
     </main>
   )
 }

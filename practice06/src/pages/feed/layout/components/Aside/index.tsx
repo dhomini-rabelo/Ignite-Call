@@ -16,7 +16,10 @@ export default function AsideNav() {
         />
         <nav className="mt-16 flex flex-col gap-y-4">
           <A.NavLink
-            active={window.location.pathname === '/feed'}
+            active={
+              typeof window !== 'undefined' &&
+              window.location.pathname === '/feed'
+            }
             href="/feed"
             className="flex gap-x-3 ml-4 relative"
           >
