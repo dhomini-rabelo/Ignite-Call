@@ -3,8 +3,15 @@ import { Binoculars, ChartLineUp, SignIn } from '@phosphor-icons/react'
 import Image from 'next/image'
 import { A } from './styles'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 
 export default function AsideNav() {
+  const [path, setPath] = useState<null | string>(null)
+
+  useEffect(() => {
+    setPath(window.location.pathname)
+  }, [])
+
   return (
     <aside className="ml-5 bg-Gray-700 pt-10 pb-6 flex flex-col items-center justify-between px-14">
       <div>
@@ -16,10 +23,7 @@ export default function AsideNav() {
         />
         <nav className="mt-16 flex flex-col gap-y-4">
           <A.NavLink
-            active={
-              typeof window !== 'undefined' &&
-              window.location.pathname === '/feed'
-            }
+            active={path === '/feed'}
             href="/feed"
             className="flex gap-x-3 ml-4 relative"
           >
@@ -28,8 +32,8 @@ export default function AsideNav() {
             <strong className="leading-relaxed">Início</strong>
           </A.NavLink>
           <A.NavLink
-            active={false}
-            href=""
+            active={path === '/books'}
+            href="/books"
             className="flex gap-x-3 ml-4 relative"
           >
             <div className="bar" />
