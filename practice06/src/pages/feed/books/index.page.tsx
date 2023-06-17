@@ -1,4 +1,5 @@
 import AsideNav from '../layout/components/Aside'
+import { Books } from './components/Books'
 import { Search } from './components/Search'
 
 export default function BooksPage() {
@@ -7,6 +8,7 @@ export default function BooksPage() {
       <AsideNav />
       <main className="pt-14 px-24 grow">
         <Search />
+        <Books />
       </main>
     </main>
   )
