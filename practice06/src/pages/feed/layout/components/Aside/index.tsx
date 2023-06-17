@@ -33,7 +33,7 @@ export default function AsideNav() {
           </A.NavLink>
           <A.NavLink
             active={path === '/feed/books'}
-            href="/books"
+            href="/feed/books"
             className="flex gap-x-3 ml-4 relative"
           >
             <div className="bar" />
