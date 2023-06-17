@@ -32,7 +32,7 @@ export default function AsideNav() {
             <strong className="leading-relaxed">Início</strong>
           </A.NavLink>
           <A.NavLink
-            active={path === '/books'}
+            active={path === '/feed/books'}
             href="/books"
             className="flex gap-x-3 ml-4 relative"
           >
