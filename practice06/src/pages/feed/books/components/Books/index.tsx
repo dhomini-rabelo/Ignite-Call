@@ -1,5 +1,5 @@
+import { SimpleBook } from '@/layout/components/(Books)/SimpleBook'
 import { Button } from './styles'
-import { Book } from '@/layout/components/Book'
 
 export function Books() {
   return (
@@ -37,9 +37,9 @@ export function Books() {
         </Button.category>
       </nav>
       <main className="grid grid-cols-3 gap-x-5">
-        <Book width={108} height={152} />
-        <Book width={108} height={152} />
-        <Book width={108} height={152} />
+        <SimpleBook width={108} height={152} />
+        <SimpleBook width={108} height={152} />
+        <SimpleBook width={108} height={152} />
       </main>
     </>
   )

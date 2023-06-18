@@ -1,5 +1,5 @@
+import { SimpleBook } from '@/layout/components/(Books)/SimpleBook'
 import { CaretRight } from '@phosphor-icons/react'
-import { Book } from '@/layout/components/Book'
 
 export default function PopularBooks() {
   return (
@@ -12,7 +12,7 @@ export default function PopularBooks() {
         </strong>
       </header>
       <main className="mt-4">
-        <Book width={64} height={94} />
+        <SimpleBook width={64} height={94} />
       </main>
     </aside>
   )

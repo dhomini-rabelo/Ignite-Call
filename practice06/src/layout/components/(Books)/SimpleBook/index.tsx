@@ -2,7 +2,13 @@ import BookImage from '@/layout/assets/images/book.svg'
 import { Star } from '@phosphor-icons/react'
 import Image from 'next/image'
 
-export function Book({ width, height }: { width: number; height: number }) {
+export function SimpleBook({
+  width,
+  height,
+}: {
+  width: number
+  height: number
+}) {
   return (
     <section className="py-4 px-5 flex gap-x-5 rounded-lg bg-Gray-700 min-w-[324px]">
       <Image
