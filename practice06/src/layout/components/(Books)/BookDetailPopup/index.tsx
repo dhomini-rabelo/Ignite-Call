@@ -15,7 +15,7 @@ export function BookDetailPopup() {
           />
         </div>
         <section className="book flex flex-col mt-4 bg-Gray-700">
-          <SimpleBook width={171} height={242} />
+          <SimpleBook width={171} height={242} showRatings />
           <div className="mt-10 py-6 grid book-data w-full">
             <section className="flex gap-x-4 items-center">
               <BookmarkSimple size={24} className="text-Green-100" />
