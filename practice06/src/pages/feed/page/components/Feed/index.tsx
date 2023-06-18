@@ -2,7 +2,7 @@ import { ChartLineUp } from '@phosphor-icons/react'
 import { Ratings } from './subcomponents/Ratings'
 import { Readings } from './subcomponents/Readings'
 
-export default function Content() {
+export default function Feed() {
   return (
     <main className="pt-14 pl-24 grow">
       <h1 className="leading-snug flex items-center gap-x-3">
