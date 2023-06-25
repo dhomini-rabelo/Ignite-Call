@@ -1,4 +1,5 @@
-import { Binoculars, MagnifyingGlass } from '@phosphor-icons/react'
+import { SearchInput } from '@/layout/components/(Inputs)/SearchInput'
+import { Binoculars } from '@phosphor-icons/react'
 
 export function Search() {
   return (
@@ -9,14 +10,9 @@ export function Search() {
           Explorar
         </strong>
       </h1>
-      <section className="border border-[#49489c] rounded-[4px] px-5 py-[0.875rem] grow max-w-[433px] flex items-center justify-between">
-        <input
-          type="text"
-          placeholder="Buscar livro ou autor"
-          className="bg-transparent text-Gray-400 text-sm leading-6 block w-full"
-        />
-        <MagnifyingGlass color="#49489c" size={20} />
-      </section>
+      <div className="w-[433px]">
+        <SearchInput placeholder="Buscar livro ou autor" />
+      </div>
     </header>
   )
 }

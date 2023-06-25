@@ -1,4 +1,5 @@
 import BookImage from '@/layout/assets/images/book.svg'
+import { SearchInput } from '@/layout/components/(Inputs)/SearchInput'
 import { Star, User } from '@phosphor-icons/react'
 import Image from 'next/image'
 
@@ -9,6 +10,9 @@ export function Ratings() {
         <User size={32} className="text-Green-100" />
         <strong className="text-Gray-100 text-2xl leading-snug">Perfil</strong>
       </h1>
+      <div className="mt-10 mb-8">
+        <SearchInput placeholder="Buscar livro avaliado" />
+      </div>
       <section className="mt-10">
         <div className="p-6 max-w-[608px] rounded-lg bg-Gray-600">
           <main className="flex gap-x-5 items-stretch">
