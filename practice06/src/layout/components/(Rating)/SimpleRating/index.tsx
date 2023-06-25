@@ -2,9 +2,16 @@ import { Star } from '@phosphor-icons/react'
 import UserIcon from '@/layout/assets/images/user.svg'
 import Image from 'next/image'
 
-export function SimpleRating() {
+export function SimpleRating({
+  currentUser = false,
+}: {
+  currentUser?: boolean
+}) {
   return (
-    <section className="p-6 max-w-[608px] rounded-lg bg-Gray-700">
+    <section
+      className={`p-6 max-w-[608px] rounded-lg ${currentUser ? 'bg-Gray-600' : 'bg-Gray-700'
+        }`}
+    >
       <header
         className="flex justify-between gap-x-4"
         style={{ marginBottom: '1.25rem' }}

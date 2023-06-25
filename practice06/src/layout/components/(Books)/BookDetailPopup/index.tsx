@@ -7,7 +7,10 @@ import { AuthModal } from './subcomponents/AuthModal'
 export function BookDetailPopup() {
   const handleClose = () => 5
   return (
-    <Div.container className="absolute">
+    <Div.container
+      className="absolute overflow-auto"
+      style={{ overflow: 'auto' }}
+    >
       <Div.popup className="absolute px-12 pt-6 pb-12 flex flex-col">
         <div className="flex x-content w-full font-bold">
           <X
@@ -54,6 +57,7 @@ export function BookDetailPopup() {
             className="mt-4 flex flex-col gap-y-3"
             style={{ gap: '0.75rem 0' }}
           >
+            <SimpleRating currentUser />
             <SimpleRating />
             <SimpleRating />
           </main>
