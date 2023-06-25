@@ -23,7 +23,9 @@ export const Div = {
 
     '.book': {
       padding: '1.5rem 2rem 1rem 2rem',
+      borderRadius: '10px',
     },
+
     '.book-data': {
       gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
     },
