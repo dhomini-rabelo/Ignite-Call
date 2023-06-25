@@ -1,7 +1,7 @@
 import { BookOpen, BookmarkSimple, X } from '@phosphor-icons/react'
 import { SimpleBook } from '../SimpleBook'
 import { Div } from './styles'
-import { SimpleComment } from '../../(Comments)/SimpleComment'
+import { SimpleRating } from '../../(Rating)/SimpleRating'
 import { AuthModal } from './subcomponents/AuthModal'
 
 export function BookDetailPopup() {
@@ -54,8 +54,8 @@ export function BookDetailPopup() {
             className="mt-4 flex flex-col gap-y-3"
             style={{ gap: '0.75rem 0' }}
           >
-            <SimpleComment />
-            <SimpleComment />
+            <SimpleRating />
+            <SimpleRating />
           </main>
         </section>
       </Div.popup>

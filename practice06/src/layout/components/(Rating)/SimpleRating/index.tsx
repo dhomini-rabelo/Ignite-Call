@@ -2,7 +2,7 @@ import { Star } from '@phosphor-icons/react'
 import UserIcon from '@/layout/assets/images/user.svg'
 import Image from 'next/image'
 
-export function SimpleComment() {
+export function SimpleRating() {
   return (
     <section className="p-6 max-w-[608px] rounded-lg bg-Gray-700">
       <header
