@@ -23,7 +23,7 @@ export function SimpleRating({
           alt="Foto de perfil de usuário"
         />
         <div className="grow">
-          <strong className="font-normal leading-relaxed block text-Gray-100">
+          <strong className="leading-relaxed block text-Gray-100">
             Jaxson Dias
           </strong>
           <span className="text-Gray-400 leading-relaxed font-normal text-sm block">
