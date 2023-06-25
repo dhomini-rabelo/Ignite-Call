@@ -6,8 +6,7 @@ import { AuthModal } from './subcomponents/AuthModal'
 import UserIcon from '@/layout/assets/images/user.svg'
 import Image from 'next/image'
 
-export function BookDetailPopup() {
-  const handleClose = () => 5
+export function BookDetailPopup({ handleClose }: { handleClose: () => void }) {
   return (
     <Div.container
       className="absolute overflow-auto"
@@ -19,6 +18,7 @@ export function BookDetailPopup() {
             onClick={handleClose}
             size={24}
             className="text-Gray-300 cursor-pointer hover:text-Gray-200"
+            style={{ cursor: 'pointer' }}
           />
         </div>
         <section className="book flex flex-col mt-4 bg-Gray-700">
