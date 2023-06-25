@@ -13,7 +13,10 @@ export function Ratings() {
       <div className="mt-10 mb-8">
         <SearchInput placeholder="Buscar livro avaliado" />
       </div>
-      <section className="mt-10">
+      <section>
+        <span className="block text-Gray-300 leading-6 text-sm mb-2">
+          Há 2 dias
+        </span>
         <div className="p-6 max-w-[608px] rounded-lg bg-Gray-700">
           <main className="flex gap-x-5 items-stretch">
             <Image
