@@ -12,7 +12,10 @@ export function SimpleBook({
   showRatings?: boolean
 }) {
   return (
-    <section className="py-4 px-5 flex gap-x-5 rounded-lg bg-Gray-700 min-w-[324px]">
+    <section
+      className={`py-4 ${!showRatings && 'px-5'
+        } flex gap-x-5 rounded-lg bg-Gray-700 min-w-[324px]`}
+    >
       <Image
         src={BookImage}
         width={width}
