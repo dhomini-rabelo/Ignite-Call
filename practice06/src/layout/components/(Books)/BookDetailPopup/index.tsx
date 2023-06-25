@@ -2,6 +2,7 @@ import { BookOpen, BookmarkSimple, X } from '@phosphor-icons/react'
 import { SimpleBook } from '../SimpleBook'
 import { Div } from './styles'
 import { SimpleComment } from '../../(Comments)/SimpleComment'
+import { AuthModal } from './subcomponents/AuthModal'
 
 export function BookDetailPopup() {
   const handleClose = () => 5
@@ -44,7 +45,9 @@ export function BookDetailPopup() {
           <header className="flex justify-between items-center">
             <span className="text-sm leading-6 text-Gray-200">Avaliações</span>
             <strong className="flex text-Purple-100 items-center cursor-pointer">
-              <strong className="leading-6">Avaliar</strong>
+              <AuthModal>
+                <strong className="leading-6">Avaliar</strong>
+              </AuthModal>
             </strong>
           </header>
           <main
