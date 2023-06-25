@@ -1,5 +1,5 @@
 import AsideNav from '../layout/components/Aside'
-import PopularBooks from '../page/components/PopularBooks'
+import ProfileData from './components/ProfileData'
 import { Ratings } from './components/Ratings'
 
 export default function ProfilePage() {
@@ -7,7 +7,7 @@ export default function ProfilePage() {
     <main className="grow bg-Gray-800 py-5 text-Gray-100 flex">
       <AsideNav />
       <Ratings />
-      <PopularBooks />
+      <ProfileData />
     </main>
   )
 }
