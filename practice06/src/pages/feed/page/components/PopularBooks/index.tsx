@@ -1,13 +1,16 @@
 import { SimpleBook } from '@/layout/components/(Books)/SimpleBook'
 import { CaretRight } from '@phosphor-icons/react'
+import Link from 'next/link'
 
 export default function PopularBooks() {
   return (
-    <aside className="pt-36 grow max-w-[324px]">
+    <aside className="pt-32 grow max-w-[324px]">
       <header className="flex justify-between items-center">
         <span className="text-sm leading-6">Livros populares</span>
         <strong className="flex text-Purple-100 items-center">
-          <strong className="text-sm leading-6">Ver todos</strong>
+          <Link href="/feed/books" className="font-bold text-sm leading-6">
+            Ver todos
+          </Link>
           <CaretRight size={16} />
         </strong>
       </header>

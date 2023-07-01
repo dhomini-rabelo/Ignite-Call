@@ -1,6 +1,7 @@
 import { CaretRight, Star } from '@phosphor-icons/react'
 import BookImage from '@/layout/assets/images/book.svg'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export function Readings() {
   return (
@@ -10,7 +11,9 @@ export function Readings() {
           Sua última leitura
         </h2>
         <strong className="flex text-Purple-100 items-center">
-          <strong className="text-sm leading-6">Ver todas</strong>
+          <Link href="/feed/profile" className="font-bold text-sm leading-6">
+            Ver todas
+          </Link>
           <CaretRight size={16} />
         </strong>
       </header>
