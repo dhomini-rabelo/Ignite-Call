@@ -15,7 +15,7 @@ export function Readings() {
         </strong>
       </header>
       <div className="mt-4">
-        <div className="p-6 max-w-[608px] rounded-lg bg-Gray-600">
+        <div className="p-6 rounded-lg bg-Gray-600">
           <main className="flex gap-x-5 items-stretch">
             <Image
               src={BookImage}

@@ -3,7 +3,7 @@ import { CaretRight } from '@phosphor-icons/react'
 
 export default function PopularBooks() {
   return (
-    <aside className="pt-36 pl-16 pr-24 grow">
+    <aside className="pt-36 grow max-w-[324px]">
       <header className="flex justify-between items-center">
         <span className="text-sm leading-6">Livros populares</span>
         <strong className="flex text-Purple-100 items-center">
