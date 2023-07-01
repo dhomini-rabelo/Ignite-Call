@@ -1,3 +1,5 @@
+'use client'
+
 import UserIcon from '@/layout/assets/images/user.svg'
 import BooksIcon from '@/layout/assets/images/books.svg'
 import AuthorIcon from '@/layout/assets/images/author.svg'

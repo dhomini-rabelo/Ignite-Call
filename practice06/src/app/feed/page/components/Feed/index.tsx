@@ -1,3 +1,5 @@
+'use client'
+
 import { ChartLineUp } from '@phosphor-icons/react'
 import { Ratings } from './subcomponents/Ratings'
 import { Readings } from './subcomponents/Readings'

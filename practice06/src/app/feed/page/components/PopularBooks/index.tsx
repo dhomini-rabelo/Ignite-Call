@@ -1,3 +1,5 @@
+'use client'
+
 import { SimpleBook } from '@/layout/components/(Books)/SimpleBook'
 import { CaretRight } from '@phosphor-icons/react'
 import Link from 'next/link'

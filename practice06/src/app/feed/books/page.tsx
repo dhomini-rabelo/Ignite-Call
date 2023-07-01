@@ -1,3 +1,4 @@
+'use client'
 import { BookDetailPopup } from '@/layout/components/(Books)/BookDetailPopup'
 import AsideNav from '../layout/components/Aside'
 import { Books } from './components/Books'

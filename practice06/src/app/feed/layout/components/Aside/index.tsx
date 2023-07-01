@@ -1,3 +1,4 @@
+'use client'
 import LogoIcon from '@/layout/assets/images/logo.svg'
 import { Binoculars, ChartLineUp, SignIn, User } from '@phosphor-icons/react'
 import Image from 'next/image'

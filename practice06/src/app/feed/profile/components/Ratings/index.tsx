@@ -1,3 +1,5 @@
+'use client'
+
 import BookImage from '@/layout/assets/images/book.svg'
 import { SearchInput } from '@/layout/components/(Inputs)/SearchInput'
 import { Star, User } from '@phosphor-icons/react'
