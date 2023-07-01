@@ -13,9 +13,9 @@ export default function BooksPage() {
 
   return (
     <>
-      <main className="grow bg-Gray-800 py-5 text-Gray-100 flex">
+      <main className="grow bg-Gray-800 py-5 text-Gray-100 flex gap-x-24">
         <AsideNav />
-        <main className="pt-14 px-24 grow">
+        <main className="pt-14 grow max-w-[996px]">
           <Search />
           <Books />
         </main>
