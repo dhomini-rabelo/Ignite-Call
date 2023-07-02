@@ -31,7 +31,7 @@ export function SimpleBook({
         } flex gap-x-5 rounded-lg bg-Gray-700 min-w-[324px] ${className}`}
     >
       <Image
-        src={BookImage}
+        src={`/books/${book.cover_url}`}
         width={width}
         height={height}
         alt="Capa do livro"
