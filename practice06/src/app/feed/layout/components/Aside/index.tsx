@@ -4,14 +4,10 @@ import { Binoculars, ChartLineUp, SignIn, User } from '@phosphor-icons/react'
 import Image from 'next/image'
 import { A } from './styles'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { usePathname } from 'next/navigation'
 
 export default function AsideNav() {
-  const [path, setPath] = useState<null | string>(null)
-
-  useEffect(() => {
-    setPath(window.location.pathname)
-  }, [])
+  const path = usePathname()
 
   return (
     <aside className="ml-5 bg-Gray-700 pt-10 pb-6 flex flex-col items-center justify-between px-14">
