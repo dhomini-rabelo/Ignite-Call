@@ -1,5 +1,6 @@
+import { IBookModel } from '@/code/db/books'
 import BookImage from '@/layout/assets/images/book.svg'
-import { Star } from '@phosphor-icons/react'
+import { Book, Star } from '@phosphor-icons/react'
 import Image from 'next/image'
 
 export function SimpleBook({
@@ -7,11 +8,21 @@ export function SimpleBook({
   height,
   showRatings = false,
   className = '',
+  book = {
+    id: '1419e76a-7f03-4c2b-bd0a-fba25c019e22',
+    name: 'Código Limpo',
+    author: 'Robert C. Martin',
+    summary: '',
+    cover_url: 'codigo-limpo.png',
+    total_pages: 425,
+    created_at: '2023-07-01T21:09: 25.393Z',
+  },
 }: {
   width: number
   height: number
   showRatings?: boolean
   className?: string
+  book?: IBookModel
 }) {
   return (
     <section
@@ -27,9 +38,9 @@ export function SimpleBook({
       />
       <div className="grow flex flex-col justify-between">
         <div className="flex flex-col">
-          <strong className="leading-snug text-Gray-100">O Hobbit</strong>
+          <strong className="leading-snug text-Gray-100">{book.name}</strong>
           <span className="text-Gray-400 leading-relaxed font-normal text-sm">
-            J.R.R. Tolkien
+            {book.author}
           </span>
         </div>
         <div className="flex flex-col gap-y-1" style={{ rowGap: '4px' }}>
