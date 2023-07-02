@@ -1,7 +1,20 @@
 import { SimpleBook } from '@/layout/components/(Books)/SimpleBook'
 import { Button } from './styles'
+import { cache } from 'react'
 
-export function Books() {
+export const getBooksData = cache(async () => {
+  const res = await fetch('/api/books')
+  if (!res.ok) {
+    return { data: [] }
+  }
+  const responseData = await res.json()
+  return responseData.data
+})
+
+export async function Books() {
+  const data = await getBooksData()
+  console.log({ data })
+
   return (
     <>
       <nav className="mt-10 mb-12 flex gap-x-3">
