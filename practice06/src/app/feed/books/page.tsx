@@ -5,7 +5,7 @@ import { Search } from './components/Search'
 import { Suspense, useState } from 'react'
 
 export default function BooksPage() {
-  const [bookPopupIsOpen, setBookPopupIsOpen] = useState(true)
+  const [bookPopupIsOpen, setBookPopupIsOpen] = useState(false)
 
   function closePopup() {
     setBookPopupIsOpen(false)

@@ -3,7 +3,7 @@ import { Button } from './styles'
 import { cache } from 'react'
 
 export const getBooksData = cache(async () => {
-  const res = await fetch('/api/books')
+  const res = await fetch('/api/data')
   if (!res.ok) {
     return { data: [] }
   }
