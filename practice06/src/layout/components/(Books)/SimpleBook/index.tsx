@@ -6,15 +6,18 @@ export function SimpleBook({
   width,
   height,
   showRatings = false,
+  className = '',
 }: {
   width: number
   height: number
   showRatings?: boolean
+  className?: string
 }) {
   return (
     <section
-      className={`py-4 ${!showRatings && 'px-5'
-        } flex gap-x-5 rounded-lg bg-Gray-700 min-w-[324px]`}
+      className={`py-4  ${!showRatings &&
+        'px-5 cursor-pointer border-2 hover:border-Gray-600 border-transparent'
+        } flex gap-x-5 rounded-lg bg-Gray-700 min-w-[324px] ${className}`}
     >
       <Image
         src={BookImage}

@@ -2,6 +2,12 @@ import { styled } from '@/layout/styles/stitches.config'
 
 export const Button = {
   category: styled('button', {
+    '&:hover': {
+      border: '1px solid $Gray-100',
+      background: '$Purple-200',
+      color: '$Gray-100',
+    },
+
     variants: {
       active: {
         true: {

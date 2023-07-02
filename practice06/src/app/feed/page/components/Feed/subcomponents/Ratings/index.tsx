@@ -10,7 +10,7 @@ export function Ratings() {
         Avaliações mais recentes
       </h2>
       <div className="mt-4">
-        <div className="p-6 max-w-[608px] rounded-lg bg-Gray-700">
+        <div className="p-6 max-w-[608px] rounded-lg bg-Gray-700 cursor-pointer border-2 hover:border-Gray-600 border-transparent">
           <header className="flex justify-between gap-x-4">
             <Image
               src={UserIcon}

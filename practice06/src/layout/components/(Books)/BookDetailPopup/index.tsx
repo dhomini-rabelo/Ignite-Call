@@ -92,11 +92,17 @@ export function BookDetailPopup({ handleClose }: { handleClose: () => void }) {
                 rows={5}
               ></textarea>
               <div
-                className="flex justify-end mt-3"
+                className="flex justify-end mt-3 gap-x-2"
                 style={{ justifyContent: 'flex-end', marginTop: '0.75rem' }}
               >
                 <button
-                  className="bg-Gray-600 p-2 text-Green-100"
+                  className="bg-Gray-600 p-2 text-Purple-100 hover:bg-Gray-500 rounded"
+                  style={{ padding: '0.5rem' }}
+                >
+                  <X size={24} />
+                </button>
+                <button
+                  className="bg-Gray-600 p-2 text-Green-100 hover:bg-Gray-500 rounded"
                   style={{ padding: '0.5rem' }}
                 >
                   <Check size={24} />

@@ -7,6 +7,9 @@ export const A = {
       active: {
         false: {
           color: '$Gray-400',
+          '&:hover': {
+            color: '$Gray-100',
+          },
           '.bar': {
             display: 'none',
           },
