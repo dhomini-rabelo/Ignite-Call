@@ -9,7 +9,7 @@ import { BookOpen, BookmarkSimple } from '@phosphor-icons/react'
 
 export default function ProfileData() {
   return (
-    <aside className="pt-32 pl-16 pr-24 grow flex flex-col items-center">
+    <aside className="pt-32 grow flex flex-col items-center max-w-[308px]">
       <Image
         src={UserIcon}
         width={72}

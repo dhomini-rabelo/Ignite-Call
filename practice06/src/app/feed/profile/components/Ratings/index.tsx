@@ -7,7 +7,7 @@ import Image from 'next/image'
 
 export function Ratings() {
   return (
-    <main className="pt-14 pl-24 grow">
+    <main className="pt-14 ml-24 mr-16 grow max-w-[624px]">
       <h1 className="leading-snug flex items-center gap-x-3">
         <User size={32} className="text-Green-100" />
         <strong className="text-Gray-100 text-2xl leading-snug">Perfil</strong>
@@ -19,7 +19,7 @@ export function Ratings() {
         <span className="block text-Gray-300 leading-6 text-sm mb-2">
           Há 2 dias
         </span>
-        <div className="p-6 max-w-[608px] rounded-lg bg-Gray-700">
+        <div className="p-6 rounded-lg bg-Gray-700">
           <main className="flex gap-x-5 items-stretch">
             <Image
               src={BookImage}
