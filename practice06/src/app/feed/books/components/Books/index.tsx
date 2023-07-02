@@ -1,7 +1,10 @@
+'use client'
+
 import { SimpleBook } from '@/layout/components/(Books)/SimpleBook'
 import { Button } from './styles'
-import { cache } from 'react'
+import { cache, useState } from 'react'
 import { IBooksData } from './types'
+import { IBookModel } from '@/code/db/books'
 
 export const getBooksData = cache(async () => {
   const res = await fetch('/api/data')
@@ -12,15 +15,21 @@ export const getBooksData = cache(async () => {
   return responseData.data
 })
 
-export async function Books() {
-  const data = (await getBooksData()) as IBooksData
-  console.log({ data })
+export function Books({ data }: { data: IBooksData }) {
+  const [activeCategoryId, setActiveCategoryId] = useState<null | string>(null)
+
+  function bookIsInActiveCategory(book: IBookModel) {
+    return book.categories
+      .map((category) => category.categoryId)
+      .includes(activeCategoryId || '')
+  }
 
   return (
     <>
       <nav className="mt-10 mb-12 flex gap-x-3">
         <Button.category
-          active={true}
+          active={!activeCategoryId}
+          onClick={() => setActiveCategoryId(null)}
           className="rounded-full py-1 px-4 leading-5"
         >
           Tudo
@@ -28,7 +37,8 @@ export async function Books() {
         {data.categories.map((category) => (
           <Button.category
             key={category.id}
-            active={false}
+            onClick={() => setActiveCategoryId(category.id)}
+            active={activeCategoryId === category.id}
             className="rounded-full py-1 px-4 leading-5"
           >
             {category.name}
@@ -36,7 +46,10 @@ export async function Books() {
         ))}
       </nav>
       <main className="grid grid-cols-3 gap-5 pb-5">
-        {data.books.map((book) => (
+        {(activeCategoryId
+          ? data.books.filter(bookIsInActiveCategory)
+          : data.books
+        ).map((book) => (
           <SimpleBook width={108} height={152} book={book} key={book.id} />
         ))}
       </main>
