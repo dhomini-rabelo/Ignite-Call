@@ -6,4 +6,12 @@ export interface IBookModel {
   cover_url: string
   total_pages: number
   created_at: string
+  categories: {
+    categoryId: string
+  }[]
+}
+
+export interface ICategoryModel {
+  id: string
+  name: string
 }
