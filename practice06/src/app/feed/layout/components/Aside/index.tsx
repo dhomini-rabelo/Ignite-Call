@@ -10,7 +10,7 @@ export default function AsideNav() {
   const path = usePathname()
 
   return (
-    <aside className="ml-5 bg-Gray-700 pt-10 pb-6 flex flex-col items-center justify-between px-14">
+    <aside className="ml-5 bg-Gray-700 pt-10 my-5 pb-6 flex flex-col items-center justify-between px-14">
       <div>
         <Image
           src={LogoIcon}

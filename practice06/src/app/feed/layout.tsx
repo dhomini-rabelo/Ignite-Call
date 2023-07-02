@@ -11,7 +11,7 @@ export default function FeedLayout({
   children: React.ReactNode
 }) {
   return (
-    <main className="grow bg-Gray-800 py-5 text-Gray-100 flex">
+    <main className="grow bg-Gray-800 text-Gray-100 flex">
       <AsideNav />
       {children}
     </main>
