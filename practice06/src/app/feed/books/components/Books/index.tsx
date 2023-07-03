@@ -21,10 +21,10 @@ export function Books({ data }: { data: IBooksData }) {
   const [activeCategoryId, setActiveCategoryId] = useState<null | string>(null)
   const [, setActiveBookInPopup] = useAtom(activeBookInPopupAtom)
 
-  function bookIsInActiveCategory(book: IBookModel) {
+  function bookHasCategory(book: IBookModel, categoryId: string) {
     return book.categories
       .map((category) => category.categoryId)
-      .includes(activeCategoryId || '')
+      .includes(categoryId)
   }
 
   return (
@@ -50,10 +50,20 @@ export function Books({ data }: { data: IBooksData }) {
       </nav>
       <main className="grid grid-cols-3 gap-5 pb-5">
         {(activeCategoryId
-          ? data.books.filter(bookIsInActiveCategory)
+          ? data.books.filter((book) => bookHasCategory(book, activeCategoryId))
           : data.books
         ).map((book) => (
-          <div onClick={() => setActiveBookInPopup(book)} key={book.id}>
+          <div
+            onClick={() =>
+              setActiveBookInPopup({
+                ...book,
+                categoriesData: data.categories.filter((category) =>
+                  bookHasCategory(book, category.id),
+                ),
+              })
+            }
+            key={book.id}
+          >
             <SimpleBook width={108} height={152} book={book} />
           </div>
         ))}

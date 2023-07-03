@@ -5,14 +5,18 @@ import { SimpleRating } from '../../(Rating)/SimpleRating'
 import { AuthModal } from './subcomponents/AuthModal'
 import UserIcon from '@/layout/assets/images/user.svg'
 import Image from 'next/image'
-import { IBookModel } from '@/code/db/books'
+import { IBookModel, ICategoryModel } from '@/code/db/books'
+
+export interface IBookModelPopup extends IBookModel {
+  categoriesData: ICategoryModel[]
+}
 
 export function BookDetailPopup({
   handleClose,
   book,
 }: {
   handleClose: () => void
-  book: IBookModel
+  book: IBookModelPopup
 }) {
   return (
     <Div.container
@@ -29,7 +33,7 @@ export function BookDetailPopup({
           />
         </div>
         <section className="book flex flex-col mt-4 bg-Gray-700">
-          <SimpleBook width={171} height={242} showRatings />
+          <SimpleBook width={171} height={242} showRatings book={book} />
           <div className="mt-10 py-6 grid book-data w-full">
             <section className="flex gap-x-4 items-center">
               <BookmarkSimple size={24} className="text-Green-100" />
@@ -38,7 +42,9 @@ export function BookDetailPopup({
                   Categoria
                 </label>
                 <strong className="leading-5 text-Gray-200">
-                  Computação, educação
+                  {book.categoriesData
+                    .map((category) => category.name)
+                    .join(', ')}
                 </strong>
               </div>
             </section>
@@ -48,7 +54,9 @@ export function BookDetailPopup({
                 <label className="leading-6 text-Gray-300 text-sm">
                   Páginas
                 </label>
-                <strong className="leading-5 text-Gray-200">160</strong>
+                <strong className="leading-5 text-Gray-200">
+                  {book.total_pages}
+                </strong>
               </div>
             </section>
           </div>

@@ -1,4 +1,4 @@
-import { IBookModel } from '@/code/db/books'
+import { IBookModelPopup } from '@/layout/components/(Books)/BookDetailPopup'
 import { atom } from 'jotai'
 
-export const activeBookInPopupAtom = atom<IBookModel | null>(null)
+export const activeBookInPopupAtom = atom<IBookModelPopup | null>(null)
