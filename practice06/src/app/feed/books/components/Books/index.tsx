@@ -6,7 +6,7 @@ import { useState } from 'react'
 import { IBooksData } from './types'
 import { IBookModel } from '@/code/db/books'
 import { useAtom } from 'jotai'
-import { activeBookInPopupAtom } from '../../code/states'
+import { activeBookInPopupAtom } from '@/layout/components/(Books)/BookDetailPopup'
 
 export function Books({ data }: { data: IBooksData }) {
   const [activeCategoryId, setActiveCategoryId] = useState<null | string>(null)

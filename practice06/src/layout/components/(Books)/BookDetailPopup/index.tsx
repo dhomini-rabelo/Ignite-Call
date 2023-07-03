@@ -6,12 +6,13 @@ import { AuthModal } from './subcomponents/AuthModal'
 import UserIcon from '@/layout/assets/images/user.svg'
 import Image from 'next/image'
 import { IBookModel, ICategoryModel } from '@/code/db/books'
-import { activeBookInPopupAtom } from '@/app/feed/books/code/states'
-import { useAtom } from 'jotai'
+import { useAtom, atom } from 'jotai'
 
 export interface IBookModelPopup extends IBookModel {
   categoriesData: ICategoryModel[]
 }
+
+export const activeBookInPopupAtom = atom<IBookModelPopup | null>(null)
 
 export function BookDetailPopup() {
   const [book, setActiveBookInPopup] = useAtom(activeBookInPopupAtom)
