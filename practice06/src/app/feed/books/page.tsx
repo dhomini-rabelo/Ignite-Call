@@ -17,7 +17,7 @@ export default function BooksPage() {
 
   return (
     <>
-      <main className="pt-14 grow max-w-[996px] ml-24">
+      <main className="pt-14 grow max-w-[996px] ml-24 popup-overflow">
         <Search />
         <Suspense>
           <BooksWrapper />

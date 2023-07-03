@@ -45,3 +45,8 @@ a {
 .roboto, .roboto > * {
     font-family: 'Roboto', Arial, sans-serif;
 }
+
+body:has(.popup-we) .popup-overflow {
+    overflow: hidden;
+    max-height: 100vh;
+}

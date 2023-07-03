@@ -48,7 +48,7 @@ export function Books({ data }: { data: IBooksData }) {
           </Button.category>
         ))}
       </nav>
-      <main className="grid grid-cols-3 gap-5 pb-5">
+      <main className="grid grid-cols-3 gap-5 pb-5 popup-overflow">
         {(activeCategoryId
           ? data.books.filter((book) => bookHasCategory(book, activeCategoryId))
           : data.books

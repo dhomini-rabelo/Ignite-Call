@@ -20,7 +20,7 @@ export function BookDetailPopup({
 }) {
   return (
     <Div.container
-      className="absolute overflow-auto"
+      className="absolute overflow-auto popup-we"
       style={{ overflow: 'auto' }}
     >
       <Div.popup className="absolute px-12 pt-6 pb-12 flex flex-col">
