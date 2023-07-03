@@ -5,6 +5,8 @@ import { Button } from './styles'
 import { cache, useState } from 'react'
 import { IBooksData } from './types'
 import { IBookModel } from '@/code/db/books'
+import { useAtom } from 'jotai'
+import { activeBookInPopupAtom } from '../../code/states'
 
 export const getBooksData = cache(async () => {
   const res = await fetch('/api/data')
@@ -17,6 +19,7 @@ export const getBooksData = cache(async () => {
 
 export function Books({ data }: { data: IBooksData }) {
   const [activeCategoryId, setActiveCategoryId] = useState<null | string>(null)
+  const [, setActiveBookInPopup] = useAtom(activeBookInPopupAtom)
 
   function bookIsInActiveCategory(book: IBookModel) {
     return book.categories
@@ -50,7 +53,9 @@ export function Books({ data }: { data: IBooksData }) {
           ? data.books.filter(bookIsInActiveCategory)
           : data.books
         ).map((book) => (
-          <SimpleBook width={108} height={152} book={book} key={book.id} />
+          <div onClick={() => setActiveBookInPopup(book)} key={book.id}>
+            <SimpleBook width={108} height={152} book={book} />
+          </div>
         ))}
       </main>
     </>

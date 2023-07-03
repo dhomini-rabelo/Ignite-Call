@@ -1,14 +1,18 @@
 'use client'
 import { BookDetailPopup } from '@/layout/components/(Books)/BookDetailPopup'
 import { Search } from './components/Search'
-import { Suspense, useState } from 'react'
+import { Suspense } from 'react'
 import { BooksWrapper } from './components/Books/wrapper'
+import { useAtom } from 'jotai'
+import { activeBookInPopupAtom } from './code/states'
 
 export default function BooksPage() {
-  const [bookPopupIsOpen, setBookPopupIsOpen] = useState(false)
+  const [activeBookInPopup, setActiveBookInPopup] = useAtom(
+    activeBookInPopupAtom,
+  )
 
   function closePopup() {
-    setBookPopupIsOpen(false)
+    setActiveBookInPopup(null)
   }
 
   return (
@@ -19,7 +23,9 @@ export default function BooksPage() {
           <BooksWrapper />
         </Suspense>
       </main>
-      {bookPopupIsOpen && <BookDetailPopup handleClose={closePopup} />}
+      {activeBookInPopup && (
+        <BookDetailPopup handleClose={closePopup} book={activeBookInPopup} />
+      )}
     </>
   )
 }

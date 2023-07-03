@@ -5,8 +5,15 @@ import { SimpleRating } from '../../(Rating)/SimpleRating'
 import { AuthModal } from './subcomponents/AuthModal'
 import UserIcon from '@/layout/assets/images/user.svg'
 import Image from 'next/image'
+import { IBookModel } from '@/code/db/books'
 
-export function BookDetailPopup({ handleClose }: { handleClose: () => void }) {
+export function BookDetailPopup({
+  handleClose,
+  book,
+}: {
+  handleClose: () => void
+  book: IBookModel
+}) {
   return (
     <Div.container
       className="absolute overflow-auto"
