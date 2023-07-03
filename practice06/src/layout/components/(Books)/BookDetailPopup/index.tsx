@@ -6,19 +6,20 @@ import { AuthModal } from './subcomponents/AuthModal'
 import UserIcon from '@/layout/assets/images/user.svg'
 import Image from 'next/image'
 import { IBookModel, ICategoryModel } from '@/code/db/books'
+import { activeBookInPopupAtom } from '@/app/feed/books/code/states'
+import { useAtom } from 'jotai'
 
 export interface IBookModelPopup extends IBookModel {
   categoriesData: ICategoryModel[]
 }
 
-export function BookDetailPopup({
-  handleClose,
-  book,
-}: {
-  handleClose: () => void
-  book: IBookModelPopup
-}) {
-  return (
+export function BookDetailPopup() {
+  const [book, setActiveBookInPopup] = useAtom(activeBookInPopupAtom)
+  function handleClose() {
+    setActiveBookInPopup(null)
+  }
+
+  return book ? (
     <Div.container
       className="absolute overflow-auto popup-we"
       style={{ overflow: 'auto' }}
@@ -131,5 +132,7 @@ export function BookDetailPopup({
         </section>
       </Div.popup>
     </Div.container>
+  ) : (
+    <></>
   )
 }
