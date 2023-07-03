@@ -7,8 +7,10 @@ import { IBooksData } from './types'
 import { IBookModel } from '@/code/db/books'
 import { useAtom } from 'jotai'
 import { activeBookInPopupAtom } from '@/layout/components/(Books)/BookDetailPopup'
+import { searchTextAtom } from '@/layout/components/(Inputs)/SearchInput'
 
 export function Books({ data }: { data: IBooksData }) {
+  const [searchText] = useAtom(searchTextAtom)
   const [activeCategoryId, setActiveCategoryId] = useState<null | string>(null)
   const [, setActiveBookInPopup] = useAtom(activeBookInPopupAtom)
 
@@ -16,6 +18,10 @@ export function Books({ data }: { data: IBooksData }) {
     return book.categories
       .map((category) => category.categoryId)
       .includes(categoryId)
+  }
+
+  function filterBooksFromSearch(book: IBookModel) {
+    return book.name.toLowerCase().includes(searchText)
   }
 
   return (
@@ -41,8 +47,10 @@ export function Books({ data }: { data: IBooksData }) {
       </nav>
       <main className="grid grid-cols-3 gap-5 pb-5 popup-overflow">
         {(activeCategoryId
-          ? data.books.filter((book) => bookHasCategory(book, activeCategoryId))
-          : data.books
+          ? data.books
+            .filter(filterBooksFromSearch)
+            .filter((book) => bookHasCategory(book, activeCategoryId))
+          : data.books.filter(filterBooksFromSearch)
         ).map((book) => (
           <div
             onClick={() =>
