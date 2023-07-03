@@ -2,20 +2,11 @@
 
 import { SimpleBook } from '@/layout/components/(Books)/SimpleBook'
 import { Button } from './styles'
-import { cache, useState } from 'react'
+import { useState } from 'react'
 import { IBooksData } from './types'
 import { IBookModel } from '@/code/db/books'
 import { useAtom } from 'jotai'
 import { activeBookInPopupAtom } from '../../code/states'
-
-export const getBooksData = cache(async () => {
-  const res = await fetch('/api/data')
-  if (!res.ok) {
-    return { data: [] }
-  }
-  const responseData = await res.json()
-  return responseData.data
-})
 
 export function Books({ data }: { data: IBooksData }) {
   const [activeCategoryId, setActiveCategoryId] = useState<null | string>(null)
