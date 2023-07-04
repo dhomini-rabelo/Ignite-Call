@@ -12,7 +12,7 @@ export function SimpleBook({
     name: 'Código Limpo',
     author: 'Robert C. Martin',
     summary: '',
-    cover_url: 'codigo-limpo.png',
+    cover_url: 'public/images/books/codigo-limpo.png',
     total_pages: 425,
     created_at: '2023-07-01T21:09: 25.393Z',
     categories: [],
@@ -24,7 +24,6 @@ export function SimpleBook({
   className?: string
   book?: IBookModel
 }) {
-  console.log({ url: `${book.cover_url.replace('jpg', 'png').slice(6)}` })
   return (
     <section
       className={`py-4  ${!showRatings &&
