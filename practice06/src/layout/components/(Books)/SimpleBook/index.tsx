@@ -1,6 +1,5 @@
 import { IBookModel } from '@/code/db/books'
-import BookImage from '@/layout/assets/images/book.svg'
-import { Book, Star } from '@phosphor-icons/react'
+import { Star } from '@phosphor-icons/react'
 import Image from 'next/image'
 
 export function SimpleBook({
@@ -16,6 +15,7 @@ export function SimpleBook({
     cover_url: 'codigo-limpo.png',
     total_pages: 425,
     created_at: '2023-07-01T21:09: 25.393Z',
+    categories: [],
   },
 }: {
   width: number
@@ -24,6 +24,7 @@ export function SimpleBook({
   className?: string
   book?: IBookModel
 }) {
+  console.log({ url: `${book.cover_url.replace('jpg', 'png').slice(6)}` })
   return (
     <section
       className={`py-4  ${!showRatings &&
@@ -31,7 +32,7 @@ export function SimpleBook({
         } flex gap-x-5 rounded-lg bg-Gray-700 min-w-[324px] ${className}`}
     >
       <Image
-        src={`/books/${book.cover_url}`}
+        src={book.cover_url.replace('jpg', 'png').slice(6)}
         width={width}
         height={height}
         alt="Capa do livro"
