@@ -16,6 +16,7 @@ export function SimpleBook({
     total_pages: 425,
     created_at: '2023-07-01T21:09: 25.393Z',
     categories: [],
+    ratings: [],
   },
 }: {
   width: number
@@ -24,6 +25,12 @@ export function SimpleBook({
   className?: string
   book?: IBookModel
 }) {
+  const rate =
+    book.ratings.reduce(
+      (acc, rating) => acc + parseInt(rating.rate || '0'),
+      0,
+    ) / (book.ratings.length || 1)
+
   return (
     <section
       className={`py-4  ${!showRatings &&
@@ -45,15 +52,19 @@ export function SimpleBook({
         </div>
         <div className="flex flex-col gap-y-1" style={{ rowGap: '4px' }}>
           <div className="flex text-Purple-100 gap-x-1">
-            <Star size={16} weight="fill" />
-            <Star size={16} weight="fill" />
-            <Star size={16} weight="fill" />
-            <Star size={16} weight="fill" />
-            <Star size={16} />
+            {[1, 2, 3, 4, 5].map((value) =>
+              value <= rate ? (
+                <Star size={16} weight="fill" key={value} />
+              ) : (
+                <Star size={16} key={value} />
+              ),
+            )}
           </div>
           {showRatings && (
             <span className="text-sm text-Gray-400 leading-5">
-              3 Avaliações
+              {book.ratings.length > 1
+                ? `${book.ratings.length} Avaliações`
+                : `${book.ratings.length} Avaliação`}
             </span>
           )}
         </div>
