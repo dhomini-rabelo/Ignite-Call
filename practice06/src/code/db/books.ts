@@ -12,7 +12,7 @@ export interface IBookModel {
   ratings: {
     id: string
     user_id: string
-    rate: string
+    rate: number
     description: string
     created_at: string
   }[]
