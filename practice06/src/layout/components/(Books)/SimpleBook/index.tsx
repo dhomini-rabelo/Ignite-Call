@@ -1,6 +1,7 @@
 import { IBookModel } from '@/code/db/books'
 import { Star } from '@phosphor-icons/react'
 import Image from 'next/image'
+import { RatingStars } from '../../(Rating)/RatingStars'
 
 export function SimpleBook({
   width,
@@ -52,13 +53,7 @@ export function SimpleBook({
         </div>
         <div className="flex flex-col gap-y-1" style={{ rowGap: '4px' }}>
           <div className="flex text-Purple-100 gap-x-1">
-            {[1, 2, 3, 4, 5].map((value) =>
-              value <= rate ? (
-                <Star size={16} weight="fill" key={value} />
-              ) : (
-                <Star size={16} key={value} />
-              ),
-            )}
+            <RatingStars rate={rate} />
           </div>
           {showRatings && (
             <span className="text-sm text-Gray-400 leading-5">

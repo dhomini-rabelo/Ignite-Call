@@ -1,6 +1,7 @@
 import { Star } from '@phosphor-icons/react'
 import Image from 'next/image'
 import { IUserModel } from '@/code/db/users'
+import { RatingStars } from '../RatingStars'
 
 export function SimpleRating({
   currentUser = false,
@@ -50,13 +51,7 @@ export function SimpleRating({
             Hoje
           </span>
         </div>
-        <div className="flex text-Purple-100 gap-x-1">
-          <Star size={16} weight="fill" />
-          <Star size={16} weight="fill" />
-          <Star size={16} weight="fill" />
-          <Star size={16} weight="fill" />
-          <Star size={16} />
-        </div>
+        <RatingStars rate={rating.rate} />
       </header>
       <p className="text-Gray-300 leading-6 font-normal text-justify block">
         {rating.description}
