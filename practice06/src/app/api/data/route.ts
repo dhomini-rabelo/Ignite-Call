@@ -2,7 +2,7 @@ import { prisma } from '@/code/settings/backend'
 import { NextResponse as res } from 'next/server'
 
 export async function GET(request: Request) {
-  const [books, categories] = await Promise.all([
+  const [books, categories, users] = await Promise.all([
     prisma.book.findMany({
       include: {
         categories: {
@@ -13,11 +13,16 @@ export async function GET(request: Request) {
         ratings: {
           select: {
             description: true,
+            rate: true,
+            user_id: true,
+            created_at: true,
+            id: true,
           },
         },
       },
     }),
     prisma.category.findMany(),
+    prisma.user.findMany(),
   ])
-  return res.json({ data: { books, categories } })
+  return res.json({ data: { books, categories, users } })
 }
