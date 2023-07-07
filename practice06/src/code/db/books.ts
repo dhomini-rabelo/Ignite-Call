@@ -1,3 +1,5 @@
+import { IUserModel } from './users'
+
 export interface IBookModel {
   id: string
   name: string
@@ -11,7 +13,7 @@ export interface IBookModel {
   }[]
   ratings: {
     id: string
-    user_id: string
+    user: IUserModel
     rate: number
     description: string
     created_at: string
