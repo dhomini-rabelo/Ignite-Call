@@ -34,16 +34,18 @@ export function Books({ data }: { data: IBooksData }) {
         >
           Tudo
         </Button.category>
-        {data.categories.map((category) => (
-          <Button.category
-            key={category.id}
-            onClick={() => setActiveCategoryId(category.id)}
-            active={activeCategoryId === category.id}
-            className="rounded-full py-1 px-4 leading-5"
-          >
-            {category.name}
-          </Button.category>
-        ))}
+        {data.categories
+          .slice(0, data.categories.length > 5 ? 5 : data.categories.length)
+          .map((category) => (
+            <Button.category
+              key={category.id}
+              onClick={() => setActiveCategoryId(category.id)}
+              active={activeCategoryId === category.id}
+              className="rounded-full py-1 px-4 leading-5"
+            >
+              {category.name}
+            </Button.category>
+          ))}
       </nav>
       <main className="grid grid-cols-3 gap-5 pb-5 popup-overflow">
         {(activeCategoryId
