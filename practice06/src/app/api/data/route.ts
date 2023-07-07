@@ -14,9 +14,15 @@ export async function GET(request: Request) {
           select: {
             description: true,
             rate: true,
-            user_id: true,
             created_at: true,
             id: true,
+            user: {
+              select: {
+                id: true,
+                name: true,
+                avatar_url: true,
+              },
+            },
           },
         },
       },
