@@ -9,6 +9,13 @@ export interface IBookModel {
   categories: {
     categoryId: string
   }[]
+  ratings: {
+    id: string
+    user_id: string
+    rate: string
+    description: string
+    created_at: string
+  }[]
 }
 
 export interface ICategoryModel {
