@@ -69,7 +69,7 @@ export function AuthModal({ children }: { children: ReactElement }) {
                     >
                       <span
                         onClick={closeModal}
-                        className="cursor-pointer text-Gray-400 top-2"
+                        className="cursor-pointer text-Gray-400 top-2 hover:text-Gray-300"
                         style={{ cursor: 'pointer' }}
                       >
                         <X size={24} />
