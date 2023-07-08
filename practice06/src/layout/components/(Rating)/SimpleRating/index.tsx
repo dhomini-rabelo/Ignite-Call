@@ -1,4 +1,5 @@
-import Image from 'next/image'
+import { formatDistanceToNow } from 'date-fns'
+import { ptBR } from 'date-fns/locale'
 import { IUserModel } from '@/code/db/users'
 import { RatingStars } from '../RatingStars'
 import { Avatar } from '../../(Users)/Avatar'
@@ -42,7 +43,10 @@ export function SimpleRating({
             {rating.user.name}
           </strong>
           <span className="text-Gray-400 leading-relaxed font-normal text-sm block">
-            Hoje
+            {formatDistanceToNow(new Date(rating.created_at), {
+              locale: ptBR,
+              addSuffix: true,
+            })}
           </span>
         </div>
         <RatingStars rate={rating.rate} />
