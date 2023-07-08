@@ -9,7 +9,7 @@ export async function FeedPageWrapper() {
   return (
     <>
       <Feed />
-      <PopularBooks />
+      <PopularBooks booksData={data} />
     </>
   )
 }
