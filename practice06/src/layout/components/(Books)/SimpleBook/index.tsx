@@ -2,6 +2,7 @@ import { IBookModel } from '@/code/db/books'
 import { Star } from '@phosphor-icons/react'
 import Image from 'next/image'
 import { RatingStars } from '../../(Rating)/RatingStars'
+import { Strong } from './styles'
 
 export function SimpleBook({
   width,
@@ -46,7 +47,9 @@ export function SimpleBook({
       />
       <div className="grow flex flex-col justify-between">
         <div className="flex flex-col">
-          <strong className="leading-snug text-Gray-100">{book.name}</strong>
+          <Strong.bookTitle className="leading-snug text-Gray-100">
+            {book.name}
+          </Strong.bookTitle>
           <span className="text-Gray-400 leading-relaxed font-normal text-sm">
             {book.author}
           </span>
