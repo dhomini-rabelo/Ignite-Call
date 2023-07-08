@@ -1,7 +1,7 @@
-import { Star } from '@phosphor-icons/react'
 import Image from 'next/image'
 import { IUserModel } from '@/code/db/users'
 import { RatingStars } from '../RatingStars'
+import { Avatar } from '../../(Users)/Avatar'
 
 export function SimpleRating({
   currentUser = false,
@@ -13,7 +13,6 @@ export function SimpleRating({
     user: {
       avatar_url:
         'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80',
-      created_at: '2023-07-04T00:01:33.807Z',
       id: '48e458c0-8b1e-4994-b85a-1e1cfcc9dd60',
       name: 'Jaxson Dias',
     },
@@ -37,12 +36,7 @@ export function SimpleRating({
         className="flex justify-between gap-x-4"
         style={{ marginBottom: '1.25rem' }}
       >
-        <Image
-          src={rating.user.avatar_url}
-          width={40}
-          height={40}
-          alt="Foto de perfil de usuário"
-        />
+        <Avatar src={rating.user.avatar_url} />
         <div className="grow">
           <strong className="leading-relaxed block text-Gray-100">
             {rating.user.name}
