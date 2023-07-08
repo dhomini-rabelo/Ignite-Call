@@ -1,5 +1,13 @@
 import { IUserModel } from './users'
 
+export interface IRatingModel {
+  id: string
+  user: IUserModel
+  rate: number
+  description: string
+  created_at: string
+}
+
 export interface IBookModel {
   id: string
   name: string
@@ -11,13 +19,7 @@ export interface IBookModel {
   categories: {
     categoryId: string
   }[]
-  ratings: {
-    id: string
-    user: IUserModel
-    rate: number
-    description: string
-    created_at: string
-  }[]
+  ratings: IRatingModel[]
 }
 
 export interface ICategoryModel {
