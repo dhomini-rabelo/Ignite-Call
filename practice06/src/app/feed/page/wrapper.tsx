@@ -1,5 +1,5 @@
 import { getBooksData } from '@/layout/client/booksData'
-import { IBooksData } from '../books/components/Books/types'
+import { IBooksData } from '../../../layout/client/types'
 import Feed from './components/Feed'
 import PopularBooks from './components/PopularBooks'
 

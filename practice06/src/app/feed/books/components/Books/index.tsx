@@ -3,7 +3,7 @@
 import { SimpleBook } from '@/layout/components/(Books)/SimpleBook'
 import { Button } from './styles'
 import { useState } from 'react'
-import { IBooksData } from './types'
+import { IBooksData } from '../../../../../layout/client/types'
 import { IBookModel } from '@/code/db/books'
 import { useAtom } from 'jotai'
 import { activeBookInPopupAtom } from '@/layout/components/(Books)/BookDetailPopup'

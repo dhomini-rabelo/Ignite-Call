@@ -1,4 +1,4 @@
-import { IBooksData } from './types'
+import { IBooksData } from '../../../../../layout/client/types'
 import { Books } from '.'
 import { getBooksData } from '@/layout/client/booksData'
 
