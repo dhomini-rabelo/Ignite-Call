@@ -28,10 +28,8 @@ export function SimpleBook({
   book?: IBookModel
 }) {
   const rate =
-    book.ratings.reduce(
-      (acc, rating) => acc + parseInt(rating.rate || '0'),
-      0,
-    ) / (book.ratings.length || 1)
+    book.ratings.reduce((acc, rating) => acc + (rating.rate || 0), 0) /
+    (book.ratings.length || 1)
 
   return (
     <section
