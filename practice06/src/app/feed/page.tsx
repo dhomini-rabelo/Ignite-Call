@@ -1,11 +1,5 @@
-import Feed from './page/components/Feed'
-import PopularBooks from './page/components/PopularBooks'
+import { FeedPageWrapper } from './page/wrapper'
 
 export default function FeedPage() {
-  return (
-    <>
-      <Feed />
-      <PopularBooks />
-    </>
-  )
+  return <FeedPageWrapper />
 }
