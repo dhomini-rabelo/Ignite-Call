@@ -126,9 +126,9 @@ export function BookDetailPopup() {
                 </button>
               </div>
             </section>
-            <SimpleRating currentUser />
-            <SimpleRating />
-            <SimpleRating />
+            {book.ratings.map((rating) => (
+              <SimpleRating key={rating.id} rating={rating} />
+            ))}
           </main>
         </section>
       </Div.popup>
