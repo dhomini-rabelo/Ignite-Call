@@ -15,13 +15,20 @@ export const authOptions: NextAuthOptions = {
     GoogleProvider({
       clientId: String(process.env.GOOGLE_CLIENT_ID),
       clientSecret: String(process.env.GOOGLE_CLIENT_SECRET),
+      authorization: {
+        params: {
+          prompt: 'consent',
+          access_type: 'offline',
+          response_type: 'code',
+        },
+      },
     }),
     // ...add more providers here
   ],
   callbacks: {
     async redirect({ url, baseUrl }) {
-      console.log(`${baseUrl}/feed`)
-      return `${baseUrl}/feed`
+      console.log({ url, baseUrl })
+      return `${baseUrl}/`
     },
   },
 }
