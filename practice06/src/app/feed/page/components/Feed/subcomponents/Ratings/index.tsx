@@ -1,6 +1,9 @@
 import { IBooksData } from '@/layout/client/types'
 import { RatingWithBook } from '@/layout/components/(Rating)/RatingWithBook'
 import { IBookModel, IRatingModel } from '@/code/db/books'
+import { activeBookInPopupAtom } from '@/layout/components/(Books)/BookDetailPopup'
+import { useAtom } from 'jotai'
+import { bookHasCategory } from '@/code/utils/books'
 
 interface ratingFromBook {
   book: IBookModel
@@ -8,6 +11,7 @@ interface ratingFromBook {
 }
 
 export function Ratings({ booksData }: { booksData: IBooksData }) {
+  const [, setActiveBookInPopup] = useAtom(activeBookInPopupAtom)
   const ratingsFromBooks: ratingFromBook[] = booksData.books.reduce(
     (acc: ratingFromBook[], book) => {
       const rating = book.ratings.length >= 1 ? book.ratings[0] : null
@@ -27,11 +31,23 @@ export function Ratings({ booksData }: { booksData: IBooksData }) {
         {ratingsFromBooks
           .slice(0, ratingsFromBooks.length > 4 ? 4 : ratingsFromBooks.length)
           .map((ratingData) => (
-            <RatingWithBook
-              rating={ratingData.rating}
-              book={ratingData.book}
-              key={ratingData.rating.id}
-            />
+            <div
+              onClick={() =>
+                setActiveBookInPopup({
+                  ...ratingData.book,
+                  categoriesData: booksData.categories.filter((category) =>
+                    bookHasCategory(ratingData.book, category.id),
+                  ),
+                })
+              }
+              key={ratingData.book.id}
+            >
+              <RatingWithBook
+                rating={ratingData.rating}
+                book={ratingData.book}
+                key={ratingData.rating.id}
+              />
+            </div>
           ))}
       </div>
     </section>

@@ -1,11 +1,17 @@
 'use client'
 
+import { IBookModel } from '@/code/db/books'
+import { bookHasCategory } from '@/code/utils/books'
 import { IBooksData } from '@/layout/client/types'
+import { activeBookInPopupAtom } from '@/layout/components/(Books)/BookDetailPopup'
 import { SimpleBook } from '@/layout/components/(Books)/SimpleBook'
 import { CaretRight } from '@phosphor-icons/react'
+import { useAtom } from 'jotai'
 import Link from 'next/link'
 
 export default function PopularBooks({ booksData }: { booksData: IBooksData }) {
+  const [, setActiveBookInPopup] = useAtom(activeBookInPopupAtom)
+
   return (
     <aside className="pt-32 grow max-w-[324px]">
       <header className="flex justify-between items-center">
@@ -21,7 +27,19 @@ export default function PopularBooks({ booksData }: { booksData: IBooksData }) {
         {booksData.books
           .slice(0, booksData.books.length > 4 ? 4 : booksData.books.length)
           .map((book) => (
-            <SimpleBook width={64} height={94} book={book} key={book.id} />
+            <div
+              onClick={() =>
+                setActiveBookInPopup({
+                  ...book,
+                  categoriesData: booksData.categories.filter((category) =>
+                    bookHasCategory(book, category.id),
+                  ),
+                })
+              }
+              key={book.id}
+            >
+              <SimpleBook width={64} height={94} book={book} key={book.id} />
+            </div>
           ))}
       </main>
     </aside>

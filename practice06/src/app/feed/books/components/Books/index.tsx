@@ -8,17 +8,12 @@ import { IBookModel } from '@/code/db/books'
 import { useAtom } from 'jotai'
 import { activeBookInPopupAtom } from '@/layout/components/(Books)/BookDetailPopup'
 import { searchTextAtom } from '@/layout/components/(Inputs)/SearchInput'
+import { bookHasCategory } from '@/code/utils/books'
 
 export function Books({ data }: { data: IBooksData }) {
   const [searchText] = useAtom(searchTextAtom)
   const [activeCategoryId, setActiveCategoryId] = useState<null | string>(null)
   const [, setActiveBookInPopup] = useAtom(activeBookInPopupAtom)
-
-  function bookHasCategory(book: IBookModel, categoryId: string) {
-    return book.categories
-      .map((category) => category.categoryId)
-      .includes(categoryId)
-  }
 
   function filterBooksFromSearch(book: IBookModel) {
     return book.name.toLowerCase().includes(searchText)
