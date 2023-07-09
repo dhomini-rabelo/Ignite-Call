@@ -1,13 +1,27 @@
 'use client'
 import LogoIcon from '@/layout/assets/images/logo.svg'
-import { Binoculars, ChartLineUp, SignIn, User } from '@phosphor-icons/react'
+import {
+  Binoculars,
+  ChartLineUp,
+  SignIn,
+  SignOut,
+  User,
+} from '@phosphor-icons/react'
 import Image from 'next/image'
 import { A } from './styles'
-import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { signOut } from 'next-auth/react'
 
-export default function AsideNav() {
+export default function AsideNav({
+  isAuthenticated,
+}: {
+  isAuthenticated: boolean
+}) {
   const path = usePathname()
+
+  function handleLogout() {
+    signOut()
+  }
 
   return (
     <aside className="max-h-[95vh] my-5">
@@ -38,21 +52,33 @@ export default function AsideNav() {
               <Binoculars size={24} />
               <strong className="leading-relaxed">Explorar</strong>
             </A.NavLink>
-            <A.NavLink
-              active={path === '/feed/profile'}
-              href="/feed/profile"
-              className="flex gap-x-3 ml-4 relative"
-            >
-              <div className="bar" />
-              <User size={24} />
-              <strong className="leading-relaxed">Perfil</strong>
-            </A.NavLink>
+            {isAuthenticated && (
+              <A.NavLink
+                active={path === '/feed/profile'}
+                href="/feed/profile"
+                className="flex gap-x-3 ml-4 relative"
+              >
+                <div className="bar" />
+                <User size={24} />
+                <strong className="leading-relaxed">Perfil</strong>
+              </A.NavLink>
+            )}
           </nav>
         </div>
-        <Link href="/" className="flex gap-x-3 items-center">
-          <strong className="text-Gray-100">Fazer Login</strong>
-          <SignIn size={20} className="text-Green-100" />
-        </Link>
+        {isAuthenticated ? (
+          <div
+            onClick={handleLogout}
+            className="flex gap-x-3 items-center cursor-pointer"
+          >
+            <strong className="text-Gray-100">Sair</strong>
+            <SignOut size={20} className="text-Green-100" />
+          </div>
+        ) : (
+          <div className="flex gap-x-3 items-center cursor-pointer">
+            <strong className="text-Gray-100">Fazer Login</strong>
+            <SignIn size={20} className="text-Green-100" />
+          </div>
+        )}
       </div>
     </aside>
   )
