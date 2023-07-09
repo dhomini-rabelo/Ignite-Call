@@ -1,8 +1,7 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState, ReactElement } from 'react'
-import Image from 'next/image'
-import GoogleIcon from '@/layout/assets/images/google.svg'
 import { X } from '@phosphor-icons/react'
+import { GoogleLogin } from './GoogleLogin'
 
 export function AuthModal({ children }: { children: ReactElement }) {
   const [isOpen, setIsOpen] = useState(false)
@@ -83,15 +82,7 @@ export function AuthModal({ children }: { children: ReactElement }) {
                   </div>
 
                   <div className="mt-4">
-                    <button className="w-full bg-Gray-600 rounded-lg flex items-center gap-x-5 text-Gray-200 py-5 px-6">
-                      <Image
-                        src={GoogleIcon}
-                        width={32}
-                        height={32}
-                        alt="Logo do Google"
-                      />
-                      <strong>Entrar com Google</strong>
-                    </button>
+                    <GoogleLogin />
                   </div>
                 </Dialog.Panel>
               </Transition.Child>

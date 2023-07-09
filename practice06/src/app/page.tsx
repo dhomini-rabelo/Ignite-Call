@@ -2,7 +2,7 @@ import Image from 'next/image'
 import HomeImage from '@/layout/assets/images/home.png'
 import RocketIcon from '@/layout/assets/images/rocket.svg'
 import Link from 'next/link'
-import { GoogleLogin } from './page/components/Login'
+import { GoogleLogin } from '@/layout/components/GoogleLogin'
 
 export default function Home() {
   return (
