@@ -8,8 +8,10 @@ import { BookDetailPopup } from '@/layout/components/(Books)/BookDetailPopup'
 export async function FeedPageClientWrapper({ data }: { data: IBooksData }) {
   return (
     <>
-      <Feed booksData={data} />
-      <PopularBooks booksData={data} />
+      <main className="flex grow popup-overflow">
+        <Feed booksData={data} />
+        <PopularBooks booksData={data} />
+      </main>
       <BookDetailPopup />
     </>
   )
