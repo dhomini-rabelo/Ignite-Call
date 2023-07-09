@@ -3,8 +3,18 @@ import HomeImage from '@/layout/assets/images/home.png'
 import RocketIcon from '@/layout/assets/images/rocket.svg'
 import Link from 'next/link'
 import { GoogleLogin } from '@/layout/components/GoogleLogin'
+import { authOptions } from './api/auth/[...nextauth]/route'
+import { getServerSession } from 'next-auth'
+import { redirect } from 'next/navigation'
 
-export default function Home() {
+export default async function Home() {
+  const session = await getServerSession(authOptions)
+  const isAuthenticated = !!(session && session.user)
+
+  if (isAuthenticated) {
+    redirect('/feed')
+  }
+
   return (
     <main className="grow flex justify-center bg-Gray-800 py-5 text-white">
       <Image
