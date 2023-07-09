@@ -23,7 +23,7 @@ export function Ratings({ booksData }: { booksData: IBooksData }) {
       <h2 className="leading-relaxed font-normal text-sm">
         Avaliações mais recentes
       </h2>
-      <div className="mt-4 flex flex-col gap-y-3">
+      <div className="mt-4 flex flex-col gap-y-3 pb-8">
         {ratingsFromBooks
           .slice(0, ratingsFromBooks.length > 4 ? 4 : ratingsFromBooks.length)
           .map((ratingData) => (
