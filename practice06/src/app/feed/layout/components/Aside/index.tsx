@@ -11,6 +11,7 @@ import Image from 'next/image'
 import { A } from './styles'
 import { usePathname } from 'next/navigation'
 import { signOut } from 'next-auth/react'
+import { AuthModal } from '@/layout/components/AuthModal'
 
 export default function AsideNav({
   isAuthenticated,
@@ -74,10 +75,12 @@ export default function AsideNav({
             <SignOut size={20} className="text-Green-100" />
           </div>
         ) : (
-          <div className="flex gap-x-3 items-center cursor-pointer">
-            <strong className="text-Gray-100">Fazer Login</strong>
-            <SignIn size={20} className="text-Green-100" />
-          </div>
+          <AuthModal>
+            <div className="flex gap-x-3 items-center cursor-pointer">
+              <strong className="text-Gray-100">Fazer Login</strong>
+              <SignIn size={20} className="text-Green-100" />
+            </div>
+          </AuthModal>
         )}
       </div>
     </aside>

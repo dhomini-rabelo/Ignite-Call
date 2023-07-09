@@ -2,11 +2,11 @@ import { BookOpen, BookmarkSimple, Check, Star, X } from '@phosphor-icons/react'
 import { SimpleBook } from '../SimpleBook'
 import { Div } from './styles'
 import { SimpleRating } from '../../(Rating)/SimpleRating'
-import { AuthModal } from './subcomponents/AuthModal'
 import UserIcon from '@/layout/assets/images/user.svg'
 import Image from 'next/image'
 import { IBookModel, ICategoryModel } from '@/code/db/books'
 import { useAtom, atom } from 'jotai'
+import { AuthModal } from '../../AuthModal'
 
 export interface IBookModelPopup extends IBookModel {
   categoriesData: ICategoryModel[]
