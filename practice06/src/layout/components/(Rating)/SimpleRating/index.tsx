@@ -12,7 +12,7 @@ export function SimpleRating({
     id: 'aecfc87c-ca03-47af-b524-4ea93dbdc889',
     rate: 4,
     user: {
-      avatar_url:
+      image:
         'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80',
       id: '48e458c0-8b1e-4994-b85a-1e1cfcc9dd60',
       name: 'Jaxson Dias',
@@ -37,7 +37,7 @@ export function SimpleRating({
         className="flex justify-between gap-x-4"
         style={{ marginBottom: '1.25rem' }}
       >
-        <Avatar src={rating.user.avatar_url} />
+        <Avatar src={rating.user.image} />
         <div className="grow">
           <strong className="leading-relaxed block text-Gray-100">
             {rating.user.name}
