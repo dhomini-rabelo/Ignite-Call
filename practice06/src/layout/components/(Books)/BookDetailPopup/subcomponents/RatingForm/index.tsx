@@ -1,8 +1,12 @@
 import { Check, Star, X } from '@phosphor-icons/react'
 import { IUserModel } from '@/code/db/users'
 import { Avatar } from '@/layout/components/(Users)/Avatar'
+import { useState } from 'react'
+import { v4 as uuidV4 } from 'uuid'
 
 export function RatingForm({ user }: { user: IUserModel }) {
+  const [rate, setRate] = useState(3)
+
   return (
     <section className="p-6 max-w-[608px] rounded-lg bg-Gray-700">
       <header
@@ -16,11 +20,15 @@ export function RatingForm({ user }: { user: IUserModel }) {
           </strong>
         </div>
         <div className="flex text-Purple-100 gap-x-1">
-          <Star size={16} />
-          <Star size={16} />
-          <Star size={16} />
-          <Star size={16} />
-          <Star size={16} />
+          {[1, 2, 3, 4, 5].map((index) => (
+            <Star
+              size={16}
+              key={uuidV4()}
+              onClick={() => setRate(index)}
+              className="hover:w-[20px] hover:h-[20px] cursor-pointer"
+              weight={index <= rate ? 'fill' : 'regular'}
+            />
+          ))}
         </div>
       </header>
       <textarea
