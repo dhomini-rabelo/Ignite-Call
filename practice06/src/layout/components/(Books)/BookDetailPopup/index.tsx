@@ -19,6 +19,9 @@ export function BookDetailPopup() {
   const [book, setActiveBookInPopup] = useAtom(activeBookInPopupAtom)
   const { data: session, status } = useSession()
   const isAuthenticated = session && session.user && status === 'authenticated'
+  const canEvaluate = !(book || { ratings: [] }).ratings
+    .map((rating) => rating.user.email)
+    .includes(session?.user?.email || '')
 
   function handleClose() {
     setActiveBookInPopup(null)
@@ -82,7 +85,7 @@ export function BookDetailPopup() {
             className="mt-4 flex flex-col gap-y-3"
             style={{ gap: '0.75rem 0' }}
           >
-            {isAuthenticated && (
+            {isAuthenticated && canEvaluate && (
               <RatingForm user={session!.user! as IUserModel} />
             )}
             {book.ratings.map((rating) => (
