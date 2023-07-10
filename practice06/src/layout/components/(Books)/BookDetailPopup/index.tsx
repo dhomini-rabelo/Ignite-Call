@@ -92,7 +92,11 @@ export function BookDetailPopup() {
               />
             )}
             {book.ratings.map((rating) => (
-              <SimpleRating key={rating.id} rating={rating} />
+              <SimpleRating
+                key={rating.id}
+                rating={rating}
+                currentUser={rating.user.email === session?.user?.email}
+              />
             ))}
           </main>
         </section>
