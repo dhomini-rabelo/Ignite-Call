@@ -86,7 +86,10 @@ export function BookDetailPopup() {
             style={{ gap: '0.75rem 0' }}
           >
             {isAuthenticated && canEvaluate && (
-              <RatingForm user={session!.user! as IUserModel} />
+              <RatingForm
+                user={session!.user! as IUserModel}
+                bookId={book.id}
+              />
             )}
             {book.ratings.map((rating) => (
               <SimpleRating key={rating.id} rating={rating} />
