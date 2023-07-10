@@ -40,7 +40,6 @@ export function RatingForm({
       setActiveBookInPopup({
         ...book!,
         ratings: [
-          ...book!.ratings,
           {
             id: response.data.id,
             created_at: response.data.created_at,
@@ -48,6 +47,7 @@ export function RatingForm({
             description: response.data.description,
             user: response.data.user,
           },
+          ...book!.ratings,
         ],
       })
     } catch {
@@ -99,7 +99,7 @@ export function RatingForm({
           className="bg-Gray-600 p-2 text-Purple-100 hover:bg-Gray-500 rounded"
           style={{ padding: '0.5rem' }}
           type="reset"
-          disabled={!isLoading}
+          disabled={isLoading}
         >
           <X size={24} />
         </button>
@@ -107,7 +107,7 @@ export function RatingForm({
           className="bg-Gray-600 p-2 text-Green-100 hover:bg-Gray-500 rounded"
           style={{ padding: '0.5rem' }}
           type="submit"
-          disabled={!isLoading}
+          disabled={isLoading}
         >
           <Check size={24} />
         </button>
