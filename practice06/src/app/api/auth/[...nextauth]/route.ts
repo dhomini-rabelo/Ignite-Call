@@ -1,6 +1,6 @@
 import NextAuth from 'next-auth'
 import type { NextAuthOptions } from 'next-auth'
-import GoogleProvider from 'next-auth/providers/google'
+import GoogleProvider, { GoogleProfile } from 'next-auth/providers/google'
 
 import { PrismaAdapter } from '@auth/prisma-adapter'
 import { PrismaClient } from '@prisma/client'
@@ -22,7 +22,14 @@ export const authOptions: NextAuthOptions = {
           response_type: 'code',
         },
       },
+      profile: (userProfile: GoogleProfile) => ({
+        id: userProfile.sub,
+        name: userProfile.name,
+        email: userProfile.email,
+        image: userProfile.picture,
+      }),
     }),
+
     // ...add more providers here
   ],
   callbacks: {
