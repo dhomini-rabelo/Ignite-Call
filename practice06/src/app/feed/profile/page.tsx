@@ -1,11 +1,5 @@
-import ProfileData from './components/ProfileData'
-import { Ratings } from './components/Ratings'
+import { ProfilePageClientWrapper } from './clientWrapper'
 
 export default function ProfilePage() {
-  return (
-    <>
-      <Ratings />
-      <ProfileData />
-    </>
-  )
+  return <ProfilePageClientWrapper />
 }
