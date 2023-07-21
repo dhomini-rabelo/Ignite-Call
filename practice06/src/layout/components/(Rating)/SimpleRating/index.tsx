@@ -1,8 +1,8 @@
 import { formatDistanceToNow } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
-import { IUserModel } from '@/code/db/users'
 import { RatingStars } from '../RatingStars'
 import { Avatar } from '../../(Users)/Avatar'
+import { IRatingModel } from '@/code/db/books'
 
 export function SimpleRating({
   currentUser = false,
@@ -16,17 +16,12 @@ export function SimpleRating({
         'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80',
       id: '48e458c0-8b1e-4994-b85a-1e1cfcc9dd60',
       name: 'Jaxson Dias',
+      email: 'js@js.js',
     },
   },
 }: {
   currentUser?: boolean
-  rating?: {
-    id: string
-    user: IUserModel
-    rate: number
-    description: string
-    created_at: string
-  }
+  rating?: IRatingModel
 }) {
   return (
     <section

@@ -1,6 +1,6 @@
 export const getBooksData = async () => {
   const res = await fetch('http://localhost:3000/api/data', {
-    next: { revalidate: 60 * 60 * 4 },
+    cache: 'no-cache',
   })
   if (!res.ok) {
     return { categories: [], books: [], users: [] }
