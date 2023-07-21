@@ -1,14 +1,14 @@
 import { IRatingModel } from '@/code/db/books'
 import { IUserModel } from '@/code/db/users'
 
-export interface IUserRatings {
+export interface IUserRatingsData {
   ratings: IRatingModel[]
   user: IUserModel
 }
 
 export const getUserRatingsData: (
   email: string,
-) => Promise<IUserRatings> = async (email: string) => {
+) => Promise<IUserRatingsData> = async (email: string) => {
   const res = await fetch('http://localhost:3000/api/ratings/user', {
     method: 'POST',
     cache: 'no-cache',
