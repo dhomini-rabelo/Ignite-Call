@@ -8,7 +8,7 @@ export function ProfilePageClientWrapper({ data }: { data: IUserRatingsData }) {
   return (
     <SessionProvider>
       <Ratings />
-      <ProfileData />
+      <ProfileData data={data} />
     </SessionProvider>
   )
 }
