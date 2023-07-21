@@ -1,7 +1,7 @@
 import { prisma } from '@/code/settings/backend'
 import { NextResponse as res } from 'next/server'
 
-export async function GET(request: Request) {
+export async function POST(request: Request) {
   const { email } = await request.json()
 
   if (!email) {
@@ -25,5 +25,5 @@ export async function GET(request: Request) {
     },
   })
 
-  return res.json({ data: { ratings } })
+  return res.json({ data: { ratings, user } })
 }
