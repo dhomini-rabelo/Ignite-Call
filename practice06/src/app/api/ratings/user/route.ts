@@ -25,5 +25,5 @@ export async function GET(request: Request) {
     },
   })
 
-  return res.json({ data: ratings })
+  return res.json({ data: { ratings } })
 }
