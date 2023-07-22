@@ -17,7 +17,7 @@ export function Ratings({ data }: { data: IUserRatingsData }) {
       <div className="mt-10 mb-8">
         <SearchInput placeholder="Buscar livro avaliado" />
       </div>
-      <section className="flex flex-col gap-y-6">
+      <section className="flex flex-col gap-y-6 pb-12">
         {data.ratings
           .slice()
           .sort(
@@ -33,7 +33,7 @@ export function Ratings({ data }: { data: IUserRatingsData }) {
                   addSuffix: true,
                 })}
               </span>
-              <UserRating />
+              <UserRating rating={rating} />
             </section>
           ))}
       </section>

@@ -1,37 +1,32 @@
-import BookImage from '@/layout/assets/images/book.svg'
-import { Star } from '@phosphor-icons/react'
+import { IRatingData } from '@/layout/client/ratings'
+import { RatingStars } from '@/layout/components/(Rating)/RatingStars'
 import Image from 'next/image'
 
-export function UserRating() {
+export function UserRating({ rating }: { rating: IRatingData }) {
   return (
     <section className="p-6 rounded-lg bg-Gray-700">
       <main className="flex gap-x-5 items-stretch">
         <Image
-          src={BookImage}
+          src={rating.book.cover_url.replace('jpg', 'png').slice(6)}
           width={108}
           height={152}
-          alt="Foto de perfil de usuário"
+          alt="Foto da capa do livro"
         />
         <div className="grow flex flex-col">
           <div className="flex justify-between gap-x-4">
             <div className="flex flex-col pb-6 grow">
-              <strong className="leading-snug text-Gray-100">O Hobbit</strong>
+              <strong className="leading-snug text-Gray-100">
+                {rating.book.name}
+              </strong>
               <span className="text-Gray-400 leading-relaxed font-normal text-sm">
-                J.R.R. Tolkien
+                {rating.book.author}
               </span>
             </div>
-            <div className="flex text-Purple-100 gap-x-1">
-              <Star size={16} weight="fill" />
-              <Star size={16} weight="fill" />
-              <Star size={16} weight="fill" />
-              <Star size={16} weight="fill" />
-              <Star size={16} />
-            </div>
+            <RatingStars rate={rating.rate} />
           </div>
 
           <p className="text-Gray-300 leading-6 font-normal text-justify">
-            et aenean posuere amet ultrices. Cras fermentum id pulvinar velit
-            ipsum. Sed vulputate massa velit nibh...
+            {rating.description}
           </p>
         </div>
       </main>
