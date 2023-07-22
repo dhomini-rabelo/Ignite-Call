@@ -7,7 +7,7 @@ import { IUserRatingsData } from '@/layout/client/ratings'
 export function ProfilePageClientWrapper({ data }: { data: IUserRatingsData }) {
   return (
     <SessionProvider>
-      <Ratings />
+      <Ratings data={data} />
       <ProfileData data={data} />
     </SessionProvider>
   )
