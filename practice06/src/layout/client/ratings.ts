@@ -14,9 +14,13 @@ export interface IRatingData extends IRatingModel {
   }
 }
 
+export interface IUserData extends IUserModel {
+  created_at: string
+}
+
 export interface IUserRatingsData {
   ratings: IRatingData[]
-  user: IUserModel
+  user: IUserData
 }
 
 export const getUserRatingsData: (

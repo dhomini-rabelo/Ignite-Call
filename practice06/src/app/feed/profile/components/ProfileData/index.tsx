@@ -7,6 +7,8 @@ import { Div } from './styles'
 import { BookOpen, BookmarkSimple } from '@phosphor-icons/react'
 import { IRatingData, IUserRatingsData } from '@/layout/client/ratings'
 import { Avatar } from '@/layout/components/(Users)/Avatar'
+import { formatDistanceToNow } from 'date-fns'
+import { ptBR } from 'date-fns/locale'
 
 interface IUserData {
   pagesRead: number
@@ -18,6 +20,8 @@ type IReadCategoryEntry = readonly [string, number]
 
 export default function ProfileData({ data }: { data: IUserRatingsData }) {
   const { user, ratings } = data
+
+  console.log({ user })
 
   const userData: IUserData = ratings.reduce(
     (acc: IUserData, rating: IRatingData) => ({
@@ -54,7 +58,11 @@ export default function ProfileData({ data }: { data: IUserRatingsData }) {
           {user.name}
         </h2>
         <span className="text-Gray-400 leading-6 font-normal text-sm block">
-          membro desde 2019
+          Membro{' '}
+          {formatDistanceToNow(new Date(user.created_at), {
+            locale: ptBR,
+            addSuffix: true,
+          })}
         </span>
       </div>
       <Div.line className="my-8" />
