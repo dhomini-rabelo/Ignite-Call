@@ -1,13 +1,18 @@
 'use client'
 
-import { SearchInput } from '@/layout/components/(Inputs)/SearchInput'
+import {
+  SearchInput,
+  searchTextAtom,
+} from '@/layout/components/(Inputs)/SearchInput'
 import { User } from '@phosphor-icons/react'
 import { UserRating } from './subcomponents/UserRating'
 import { IUserRatingsData } from '@/layout/client/ratings'
 import { formatDistanceToNow } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
+import { useAtom } from 'jotai'
 
 export function Ratings({ data }: { data: IUserRatingsData }) {
+  const [searchText] = useAtom(searchTextAtom)
   return (
     <main className="pt-14 ml-24 mr-16 grow max-w-[624px]">
       <h1 className="leading-snug flex items-center gap-x-3">
@@ -19,6 +24,7 @@ export function Ratings({ data }: { data: IUserRatingsData }) {
       </div>
       <section className="flex flex-col gap-y-6 pb-12">
         {data.ratings
+          .filter((rating) => rating.book.name.includes(searchText))
           .slice()
           .sort(
             (rating, otherRating) =>
