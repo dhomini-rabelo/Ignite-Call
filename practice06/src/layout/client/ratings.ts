@@ -1,7 +1,7 @@
 import { IRatingModel } from '@/code/db/books'
 import { IUserModel } from '@/code/db/users'
 
-interface IRatingData extends IRatingModel {
+export interface IRatingData extends IRatingModel {
   book: {
     total_pages: number
     author: string
