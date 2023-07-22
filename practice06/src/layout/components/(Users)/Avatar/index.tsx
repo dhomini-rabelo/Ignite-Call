@@ -15,9 +15,11 @@ export function Avatar({
       width={width}
       height={height}
       alt="Foto de perfil de usuário"
-      className={`rounded-full w-[${width}px] h-[${height}px] object-cover`}
+      className="rounded-full object-cover"
       style={{
         border: `1.5px solid #7FD1CC`,
+        width,
+        height,
       }}
     />
   )
