@@ -3,6 +3,7 @@ import { ptBR } from 'date-fns/locale'
 import { RatingStars } from '../RatingStars'
 import { Avatar } from '../../(Users)/Avatar'
 import { IRatingModel } from '@/code/db/books'
+import Link from 'next/link'
 
 export function SimpleRating({
   currentUser = false,
@@ -32,7 +33,9 @@ export function SimpleRating({
         className="flex justify-between gap-x-4"
         style={{ marginBottom: '1.25rem' }}
       >
-        <Avatar src={rating.user.image} />
+        <Link href={`/feed/profile?user=${rating.user.email}`} prefetch={false}>
+          <Avatar src={rating.user.image} />
+        </Link>
         <div className="grow">
           <strong className="leading-relaxed block text-Gray-100">
             {rating.user.name}

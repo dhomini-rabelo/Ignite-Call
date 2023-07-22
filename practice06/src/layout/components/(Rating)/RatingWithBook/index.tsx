@@ -5,6 +5,7 @@ import { RatingStars } from '../RatingStars'
 import { Avatar } from '../../(Users)/Avatar'
 import Image from 'next/image'
 import { IBookModel } from '@/code/db/books'
+import Link from 'next/link'
 
 export function RatingWithBook({
   rating = {
@@ -33,7 +34,9 @@ export function RatingWithBook({
   return (
     <section className="p-6 max-w-[608px] rounded-lg bg-Gray-700 cursor-pointer border-2 hover:border-Gray-600 border-transparent">
       <header className="flex justify-between gap-x-4">
-        <Avatar src={rating.user.image} />
+        <Link href={`/feed/profile?user=${rating.user.email}`}>
+          <Avatar src={rating.user.image} />
+        </Link>
         <div className="grow">
           <strong className="font-normal leading-relaxed block text-Gray-100">
             {rating.user.name}
