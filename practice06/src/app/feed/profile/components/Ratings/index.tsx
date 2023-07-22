@@ -24,7 +24,9 @@ export function Ratings({ data }: { data: IUserRatingsData }) {
       </div>
       <section className="flex flex-col gap-y-6 pb-12">
         {data.ratings
-          .filter((rating) => rating.book.name.includes(searchText))
+          .filter((rating) =>
+            rating.book.name.toLowerCase().includes(searchText.toLowerCase()),
+          )
           .slice()
           .sort(
             (rating, otherRating) =>
