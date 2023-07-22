@@ -1,8 +1,21 @@
 import { IRatingModel } from '@/code/db/books'
 import { IUserModel } from '@/code/db/users'
 
+interface IRatingData extends IRatingModel {
+  book: {
+    total_pages: number
+    author: string
+    categories: {
+      category: {
+        id: string
+        name: string
+      }
+    }[]
+  }
+}
+
 export interface IUserRatingsData {
-  ratings: IRatingModel[]
+  ratings: IRatingData[]
   user: IUserModel
 }
 
