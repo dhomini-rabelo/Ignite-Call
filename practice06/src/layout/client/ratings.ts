@@ -5,6 +5,8 @@ export interface IRatingData extends IRatingModel {
   book: {
     total_pages: number
     author: string
+    name: string
+    cover_url: string
     categories: {
       category: {
         id: string

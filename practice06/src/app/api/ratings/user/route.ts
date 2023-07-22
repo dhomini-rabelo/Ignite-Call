@@ -28,6 +28,8 @@ export async function POST(request: Request) {
         select: {
           author: true,
           total_pages: true,
+          name: true,
+          cover_url: true,
           categories: {
             select: {
               category: true,
