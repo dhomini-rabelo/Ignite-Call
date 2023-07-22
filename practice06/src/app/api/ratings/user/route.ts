@@ -23,6 +23,19 @@ export async function POST(request: Request) {
     where: {
       user,
     },
+    include: {
+      book: {
+        select: {
+          author: true,
+          total_pages: true,
+          categories: {
+            select: {
+              category: true,
+            },
+          },
+        },
+      },
+    },
   })
 
   return res.json({ data: { ratings, user } })
