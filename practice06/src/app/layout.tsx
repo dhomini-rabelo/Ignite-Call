@@ -18,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR">
-      <body>
+      <body className="bg-Gray-800">
         <div id="__next" className={nunito.variable}>
           {children}
         </div>
