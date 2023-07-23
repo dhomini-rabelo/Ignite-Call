@@ -4,7 +4,7 @@ export const Div = {
   container: styled('div', {
     'z-index': 1,
     minHeight: '100vh',
-    minWidth: '100vw',
+    width: '-webkit-fill-available',
     background: 'rgba(0, 0, 0, 0.6)',
   }),
   popup: styled('div', {
