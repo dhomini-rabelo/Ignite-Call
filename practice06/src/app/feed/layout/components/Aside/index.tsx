@@ -38,6 +38,7 @@ export default function AsideNav({
             <A.NavLink
               active={path === '/feed'}
               href="/feed"
+              prefetch={false}
               className="flex gap-x-3 ml-4 relative"
             >
               <div className="bar" />
@@ -47,6 +48,7 @@ export default function AsideNav({
             <A.NavLink
               active={path === '/feed/books'}
               href="/feed/books"
+              prefetch={false}
               className="flex gap-x-3 ml-4 relative"
             >
               <div className="bar" />
@@ -57,6 +59,7 @@ export default function AsideNav({
               <A.NavLink
                 active={path === '/feed/profile'}
                 href="/feed/profile"
+                prefetch={false}
                 className="flex gap-x-3 ml-4 relative"
               >
                 <div className="bar" />
