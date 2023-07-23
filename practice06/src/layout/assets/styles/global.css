@@ -46,7 +46,12 @@ a {
     font-family: 'Roboto', Arial, sans-serif;
 }
 
+body {
+    max-width: 1440px;
+}
+
 body:has(.popup-we) .popup-overflow {
     overflow: hidden;
     max-height: 100vh;
+    max-width: none;
 }
