@@ -14,7 +14,7 @@ export default async function FeedLayout({
 }) {
   const session = await getServerSession(authOptions)
   return (
-    <main className="grow text-Gray-100 flex max-w-[1440px] mx-auto">
+    <main className="grow text-Gray-100 flex mx-auto" id="feed-layout">
       <AsideNav isAuthenticated={!!(session && session.user)} />
       {children}
     </main>
