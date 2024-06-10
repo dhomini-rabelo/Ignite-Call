@@ -1,4 +1,4 @@
-<h1>Estudos Ignite(React) - Etapa 06</h1>
+<h1>Ignite Call - Ignite(React) Etapa 06</h1>
 
 <img src="./readme/project.jpg" />
 
